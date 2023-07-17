@@ -6,7 +6,7 @@ import chamkit from "../image/chamkit.png"
 
 const MainWrap = styled.div`
     /* background-color: ${colors.mainBg}; */
-    display: flex;
+    /* display: flex; */
     font-family: 'Noto Sans', sans-serif;
     height: 100%;
     width: 100%;
@@ -22,15 +22,18 @@ const MainWrap = styled.div`
 const HorizontalDivide = styled.div`
     box-sizing: border-box;
     padding: 20px;
-    height: 100vh;
-    width: 50%;
+    /* height: 100vh; */
+    height: fit-content;
+    /* width: 50%; */
+    /* width: 50%; */
 `;
 
 const FixedArea = styled(HorizontalDivide)`
     display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
-    position: fixed;
+    /* position: fixed; */
+    width: 50%;
 
     @media screen and (max-width: 850px) {
         width: 100%;
@@ -43,7 +46,7 @@ const FixedArea = styled(HorizontalDivide)`
 `;
 
 const PersonalArea = styled.div`
-    color: #B70404;
+    color: ${colors.mainColor};
     display: flex;
     flex-direction: column;
     font-size: 30px;
@@ -113,8 +116,8 @@ const IntroduceArea = styled.div`
 
 const ScrollArea = styled(HorizontalDivide)`
     padding-top: 20px;
-    position: absolute;
-    right: 0px;
+    /* position: absolute; */
+    /* right: 0px; */
 
     @media screen and (max-width: 500px) {
         position: relative;
@@ -123,12 +126,11 @@ const ScrollArea = styled(HorizontalDivide)`
 `;
 
 const ProjectTitle = styled.div`
-  color: #B70404;
+  color: ${colors.mainColor};
   cursor: pointer;
-  text-align: right;
+  /* text-align: right; */
   font-size: 30px;
   font-weight: 900;
-
 
   @media screen and (max-width: 500px) {
         font-size: 12px;
@@ -136,17 +138,20 @@ const ProjectTitle = styled.div`
 `;
 
 const ProjectArea = styled.div`
-    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: fit-content;
     width: 100%;
 `;
 
 const ProjectContent = styled.div`
-    /* background-color: #B70404; */
+    /* background-color: ${colors.mainColor}; */
     box-sizing: border-box;
     height: fit-content;
     margin-bottom: 20px;
     padding: 20px 0px;
-    width: 100%;
+    /* width: 100%; */
+    width: 47%;
 
     @media screen and (max-width: 500px) {
         font-size: 12px;
@@ -155,9 +160,12 @@ const ProjectContent = styled.div`
         width: 100%;
     };
 `;
+const ProjectName = styled.div`
+
+`;
 
 const ProjectImage = styled.img`
-    width: 100%;
+    width: 50%;
 `;
 
 const ProjectDesc = styled.div`
@@ -173,9 +181,9 @@ function Portfolio() {
 
     const projectList = [
         {
-            title: '프라이탁',
+            title: '프라이탁 ',
             src: freitag,
-            describtion: '스위스의 업사이클 브랜드인 프라이탁의 브랜드 스토리텔링 웹사이트',
+            describtion: '스위스의 업사이클 브랜드인 프라이탁의 브랜드 스토리텔링을 목적으로 기획하였고,',
             alt: '프라이탁 웹사이트 이미지'
         },
         {
@@ -192,13 +200,11 @@ function Portfolio() {
             <FixedArea>
                 <PersonalArea>
                     <InfoArea>
-                     
                         <NameArea>
                             <div>LEEYUNYOUNG</div>
                             <div style={{ fontFamily: 'Noto Sans KR' }}>이윤영</div>
                             <div style={{ fontFamily: 'Noto Sans TC' }}>李胤永</div>
                         </NameArea>
-
                         <JopArea>
                             <div>FRONTEND DEVELOPER</div>
                         </JopArea>
@@ -234,29 +240,25 @@ function Portfolio() {
                             개인적으로 공부한 프레임워크로는 React Native가 있습니다. 
                         </p>
                     </div> */}
-                    <div>
-                        문제점 파악/ 블라블라블라,...
-                    </div>
                 </IntroduceArea>
             </FixedArea>
 
             <ScrollArea>
                 <ProjectTitle onClick={ onClickProjectBtn }>PROJECT</ProjectTitle>
                     <ProjectArea>
-                        <ProjectContent>
-                            {
-                                projectList.map((thisResult) => {
-                                    const dataId = thisResult.src;
-                                    return(
-                                        <ProjectContent key={ dataId }>
-                                            <ProjectImage src={ thisResult.src } alt={ thisResult.alt }></ProjectImage>
-                                            <ProjectDesc>{ thisResult.describtion }</ProjectDesc>
-                                        </ProjectContent>
-                                    )
-                                })
+                        {
+                            projectList.map((thisResult) => {
+                                const dataId = thisResult.src;
+                                return(
+                                    <ProjectContent key={ dataId }>
+                                        <ProjectName>{ thisResult.title }</ProjectName>
+                                        <ProjectDesc>{ thisResult.describtion }</ProjectDesc>
+                                        {/* <ProjectImage src={ thisResult.src } alt={ thisResult.alt }></ProjectImage> */}
+                                    </ProjectContent>
+                                )
+                            })
 
-                            }
-                        </ProjectContent>
+                        }
                     </ProjectArea>
             </ScrollArea>
         </MainWrap>
