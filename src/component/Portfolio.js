@@ -135,12 +135,12 @@ const ProjectTitle = styled.div`
     };
 `;
 
-const WorksArea = styled.div`
+const ProjectArea = styled.div`
     height: 100%;
     width: 100%;
 `;
 
-const WorkContent = styled.div`
+const ProjectContent = styled.div`
     /* background-color: #B70404; */
     box-sizing: border-box;
     height: fit-content;
@@ -156,20 +156,36 @@ const WorkContent = styled.div`
     };
 `;
 
-const WorkImage = styled.img`
+const ProjectImage = styled.img`
     width: 100%;
 `;
 
-const WorkDesc = styled.div`
+const ProjectDesc = styled.div`
 
 `;
 
 function Portfolio() {
     const [projectVisible, serProjectVisible] = useState(false);
 
-    function onClickProjectBtn () {
+    const onClickProjectBtn = () => {
         serProjectVisible(!projectVisible);
     };
+
+    const projectList = [
+        {
+            title: '프라이탁',
+            src: freitag,
+            describtion: '스위스의 업사이클 브랜드인 프라이탁의 브랜드 스토리텔링 웹사이트',
+            alt: '프라이탁 웹사이트 이미지'
+        },
+        {
+            title: '참킷',
+            src: chamkit,
+            describt: 'HTML, CSS, Jquery를 사용한 ',
+            alt: '참킷 웹사이트 이미지'
+        }
+    ];
+
 
     return(
         <MainWrap>
@@ -226,19 +242,22 @@ function Portfolio() {
 
             <ScrollArea>
                 <ProjectTitle onClick={ onClickProjectBtn }>PROJECT</ProjectTitle>
-                    <WorksArea >
-                        <WorkContent>
-                            <WorkImage src={ freitag } alt="프라이탁 웹사이트 이미지"></WorkImage>
-                            <WorkDesc>스위스의 업사이클 브랜드인 프라이탁의 브랜드 스토리텔링 웹사이트</WorkDesc>
-                            <WorkDesc>HTMl, CSS, Jquery</WorkDesc>
-                        </WorkContent>
-                        <WorkContent>
-                            <WorkImage src={ chamkit } alt="참킷 웹사이트 이미지"></WorkImage>
-                        </WorkContent>
-                        <WorkContent>3</WorkContent>
-                        <WorkContent>4</WorkContent>
-                        <WorkContent>5</WorkContent>
-                    </WorksArea>
+                    <ProjectArea>
+                        <ProjectContent>
+                            {
+                                projectList.map((thisResult) => {
+                                    const dataId = thisResult.src;
+                                    return(
+                                        <ProjectContent key={ dataId }>
+                                            <ProjectImage src={ thisResult.src } alt={ thisResult.alt }></ProjectImage>
+                                            <ProjectDesc>{ thisResult.describtion }</ProjectDesc>
+                                        </ProjectContent>
+                                    )
+                                })
+
+                            }
+                        </ProjectContent>
+                    </ProjectArea>
             </ScrollArea>
         </MainWrap>
     )
