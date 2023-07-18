@@ -19,12 +19,11 @@ const MainWrap = styled.div`
     };
 `;
 
-const HorizontalDivide = styled.div`
+const HorizontalDivide = styled.section`
     box-sizing: border-box;
     padding: 20px;
     /* height: 100vh; */
     height: fit-content;
-    /* width: 50%; */
     /* width: 50%; */
 `;
 
@@ -45,7 +44,7 @@ const FixedArea = styled(HorizontalDivide)`
     }
 `;
 
-const PersonalArea = styled.div`
+const PersonalArea = styled.article`
     color: ${colors.mainColor};
     display: flex;
     flex-direction: column;
@@ -57,7 +56,7 @@ const PersonalArea = styled.div`
     }
 `;
 
-const InfoArea = styled.div`
+const InfoArea = styled.article`
     /* background-color: grey; */
     display: flex;
     justify-content: space-between;
@@ -85,7 +84,7 @@ const JopArea = styled.div`
   
 `;
 
-const AccountArea = styled.div`
+const AccountArea = styled.article`
     font-size: 16px;
     font-weight: 100;
     margin-bottom: 40px;
@@ -104,7 +103,7 @@ const AccountArea = styled.div`
     }
 `;
 
-const IntroduceArea = styled.div`
+const IntroduceArea = styled.article`
     background-color: #fff;
     font-family: 'Noto Sans KR';
     font-size: 15px;
@@ -112,6 +111,11 @@ const IntroduceArea = styled.div`
     line-height: 1.5;
     width: 80%;
     /* z-index: 100; */
+`;
+
+const ContentArea = styled.section`
+    box-sizing: border-box;
+    padding: 20px;
 `;
 
 const ScrollArea = styled(HorizontalDivide)`
@@ -125,7 +129,7 @@ const ScrollArea = styled(HorizontalDivide)`
     };
 `;
 
-const ProjectTitle = styled.div`
+const ContentsTitle = styled.div`
   color: ${colors.mainColor};
   cursor: pointer;
   /* text-align: right; */
@@ -136,11 +140,36 @@ const ProjectTitle = styled.div`
         font-size: 12px;
     };
 `;
+const SkillWrap = styled.article`
+    /* background-color: green; */
+    box-sizing: border-box;
+    padding: 20px 0px;
+    width: 80%;
 
-const ProjectArea = styled.div`
+`;
+const SkillBox = styled.div`
     display: flex;
-    justify-content: space-between;
+    margin-bottom: 20px;
+`;
+
+const SkillName = styled.div`
+    font-weight: 100;
+    font-size: 18px;
+    min-width: 150px;
+    width: 150px;
+`;
+
+const SkillDesc = styled.div`
+    font-weight: 100;
+    width: calc(80%-150px);
+`;
+
+const ProjectWrap = styled.article`
+    display: flex;
+    flex-wrap : wrap;
+    font-family: 'Noto Sans KR';
     height: fit-content;
+    justify-content: space-between;
     width: 100%;
 `;
 
@@ -160,8 +189,8 @@ const ProjectContent = styled.div`
         width: 100%;
     };
 `;
-const ProjectName = styled.div`
-
+const ProjectTitle = styled.div`
+    font-size: 22px;
 `;
 
 const ProjectImage = styled.img`
@@ -171,6 +200,11 @@ const ProjectImage = styled.img`
 const ProjectDesc = styled.div`
 
 `;
+const ProjectSrc = styled.div`
+    div {
+        cursor: pointer;
+    }
+`;
 
 function Portfolio() {
     const [projectVisible, serProjectVisible] = useState(false);
@@ -179,18 +213,62 @@ function Portfolio() {
         serProjectVisible(!projectVisible);
     };
 
+    const skillList = [
+        {
+            name: 'HTML5',
+            describtion: '웹 표준성, 웹 접근성을 고려하여 문서를 주어진 데이터에 따라 구조적으로 표시할 수 있습니다. 검색 엔진 최적화 경험이 있습니다.'
+        },
+        {
+            name: 'CSS3',
+            describtion: '다양한 레이아웃 구성 및 기기의 사이즈에 따른 반응형 레이아웃을 구성할 수 있습니다. 선택자를 사용하여 스타일을 적용할 수 있습니다. 내부, 외부, 인라인 등 다양한 방법으로 CSS를 작성할 수 있습니다.'
+        },
+        {
+            name: 'JavaScript',
+            describtion: '다양한 이벤트를 처리할 수 있습니다. 배열, 객체를 다룰 수 있습니다. 변수에 대해 이해하고 있습니다. 조건문을 활용할 수 있습니다. 라이브러리를 활용하여 개발할 수 있습니다.'
+        },
+        {
+            name: 'React',
+            describtion: 'props를 사용하여 컴포넌트에 값을 전달할 수 있습니다. useState를 활용하여 컴포넌트 상태를 관리 할 수 있습니다. useEffect를 활용하여 컴포넌트가 렌더링 될 때마다 특정 작업을 수행하도록 설정 할 수 있습니다. styled-components를 활용하여 컴포넌트를 스타일링 할 수 있습니다.'
+        },
+        {
+            name: 'Redux/ Redux Toolkit',
+            describtion: '기본 개념과 사용법을 알고 있습니다. 여러 개의 컴포넌트 상태를 관리할 수 있습니다. '
+        },
+        {
+            name: 'React Native',
+            describtion: '기본 개념과 사용법을 알고 있습니다. react-navigation 등의 라이브러리를 활용하여 개발한 경험이 있습니다. StyelSheet를 활용하여 컴포넌트를 스타일링 할 수 있습니다.'
+        },
+
+    ];
+
     const projectList = [
         {
-            title: '프라이탁 ',
-            src: freitag,
+            title: '독서 일기 기록 어플리케이션 READ',
+            image: freitag,
+            describtion: 'HTML, CSS, JavaScript, Jquery를 ',
+            src: 'https://reverofyoung.github.io/read-project/',
+            alt: '독서 일기 기록 어플리케이션 메인 이미지'
+        },
+        {
+            title: '대시보드',
+            image: chamkit,
+            describtion: '카페에서 작업하는 프리랜서를 위한 웹 대시보드',
+            src: 'https://reverofyoung.github.io/dashboard-project/',
+            alt: '참킷 웹사이트 메인 이미지'
+        },
+        {
+            title: '프라이탁',
+            image: freitag,
             describtion: '스위스의 업사이클 브랜드인 프라이탁의 브랜드 스토리텔링을 목적으로 기획하였고,',
-            alt: '프라이탁 웹사이트 이미지'
+            src: 'https://reverofyoung.github.io/freitag-project/',
+            alt: '프라이탁 웹사이트 메인 이미지'
         },
         {
             title: '참킷',
-            src: chamkit,
-            describt: 'HTML, CSS, Jquery를 사용한 ',
-            alt: '참킷 웹사이트 이미지'
+            image: chamkit,
+            describtion: 'HTML, CSS, Jquery를 사용한 ',
+            src: 'https://reverofyoung.github.io/chamkit-project/',
+            alt: '참킷 웹사이트 메인 이미지'
         }
     ];
 
@@ -222,8 +300,8 @@ function Portfolio() {
                     </AccountArea>
                 </PersonalArea>
                 <IntroduceArea>
-                    {/* <div>
-                        <p>신뢰할 수 있는 개발자가 되고자 합니다. </p>
+                    <div>
+                        {/* <p>신뢰할 수 있는 개발자가 되고자 합니다. </p>
                             <br />
                         <p>
                             학부생 시절 처음 HTMl, CSS를 javascript를 접하게 되었고, 졸업 후에는 약 2년간 타직종에서 근무 경험이 있습니다.
@@ -238,28 +316,52 @@ function Portfolio() {
                             <br />
                         <p>
                             개인적으로 공부한 프레임워크로는 React Native가 있습니다. 
+                        </p> */}
+
+                        <p>
+                            오버 엔지니어링을 지양하는 개발자를 꿈꿉니다. 
                         </p>
-                    </div> */}
+                    </div>
                 </IntroduceArea>
             </FixedArea>
 
+            <ContentArea style={{ width: '50%' }}>
+                <ContentsTitle>기술 스택</ContentsTitle>
+                <SkillWrap>
+                    {
+                        skillList.map((skillResult) => {
+                            const dataId = skillResult.name;
+                            return(
+                                <SkillBox key={ dataId }>
+                                    <SkillName>{ skillResult.name }</SkillName>
+                                    <SkillDesc>{ skillResult.describtion }</SkillDesc>
+                                </SkillBox>
+                            )
+                        })
+                    }
+                </SkillWrap>
+            </ContentArea>
+
             <ScrollArea>
-                <ProjectTitle onClick={ onClickProjectBtn }>PROJECT</ProjectTitle>
-                    <ProjectArea>
+                <ContentsTitle onClick={ onClickProjectBtn }>프로젝트</ContentsTitle>
+                    <ProjectWrap>
                         {
                             projectList.map((thisResult) => {
                                 const dataId = thisResult.src;
                                 return(
                                     <ProjectContent key={ dataId }>
-                                        <ProjectName>{ thisResult.title }</ProjectName>
+                                        <ProjectTitle>{ thisResult.title }</ProjectTitle>
                                         <ProjectDesc>{ thisResult.describtion }</ProjectDesc>
-                                        {/* <ProjectImage src={ thisResult.src } alt={ thisResult.alt }></ProjectImage> */}
+                                        <ProjectSrc>
+                                            <div onClick={()=>{window.open(thisResult.src)}}>바로 보기</div>
+                                        </ProjectSrc>
+                                        <ProjectImage src={ thisResult.image } alt={ thisResult.alt }></ProjectImage>
                                     </ProjectContent>
                                 )
                             })
 
                         }
-                    </ProjectArea>
+                    </ProjectWrap>
             </ScrollArea>
         </MainWrap>
     )

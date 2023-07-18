@@ -1,6 +1,7 @@
 const colors = {
     mainBg: "grey",
-    mainColor: "#C61515",
+    mainColor: "#000",
+    // mainColor: "#B10000",
 };
 
 export default colors;
