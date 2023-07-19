@@ -44,6 +44,11 @@ const FixedArea = styled(HorizontalDivide)`
     }
 `;
 
+const MenuButton = styled.button`
+    background-color: ${colors.mainColor};
+`;
+
+
 const PersonalArea = styled.article`
     color: ${colors.mainColor};
     display: flex;
@@ -287,7 +292,7 @@ function Portfolio() {
                             <div>FRONTEND DEVELOPER</div>
                         </JopArea>
                     </InfoArea>
-                    <AccountArea>
+                    {/* <AccountArea>
                         <div>
                             <a href="https://github.com/reverofyoung" target="_blank">https://github.com/reverofyoung</a>
                         </div>
@@ -297,11 +302,11 @@ function Portfolio() {
                         <div>
                             <a href="mailto:reverofyoung@gmail.com">reverofyoung@gmail.com</a>
                         </div>
-                    </AccountArea>
+                    </AccountArea> */}
                 </PersonalArea>
-                <IntroduceArea>
+                {/* <IntroduceArea>
                     <div>
-                        {/* <p>신뢰할 수 있는 개발자가 되고자 합니다. </p>
+                        <p>신뢰할 수 있는 개발자가 되고자 합니다. </p>
                             <br />
                         <p>
                             학부생 시절 처음 HTMl, CSS를 javascript를 접하게 되었고, 졸업 후에는 약 2년간 타직종에서 근무 경험이 있습니다.
@@ -316,16 +321,16 @@ function Portfolio() {
                             <br />
                         <p>
                             개인적으로 공부한 프레임워크로는 React Native가 있습니다. 
-                        </p> */}
+                        </p>
 
                         <p>
-                            오버 엔지니어링을 지양하는 개발자를 꿈꿉니다. 
+                            오버 엔지니어링을 지양
                         </p>
                     </div>
-                </IntroduceArea>
+                </IntroduceArea> */}
             </FixedArea>
 
-            <ContentArea style={{ width: '50%' }}>
+            {/* <ContentArea style={{ width: '50%' }}>
                 <ContentsTitle>기술 스택</ContentsTitle>
                 <SkillWrap>
                     {
@@ -340,9 +345,9 @@ function Portfolio() {
                         })
                     }
                 </SkillWrap>
-            </ContentArea>
+            </ContentArea> */}
 
-            <ScrollArea>
+            {/* <ScrollArea>
                 <ContentsTitle onClick={ onClickProjectBtn }>프로젝트</ContentsTitle>
                     <ProjectWrap>
                         {
@@ -362,7 +367,9 @@ function Portfolio() {
 
                         }
                     </ProjectWrap>
-            </ScrollArea>
+            </ScrollArea> */}
+
+            <MenuButton>more</MenuButton>
         </MainWrap>
     )
 
