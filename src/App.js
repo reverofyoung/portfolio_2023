@@ -1,12 +1,19 @@
-import GlobalStyles from "./common/GlobalStyles";
-import Portfolio from "./component/Portfolio";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import ProjectPage from "./pages/ProjectPage";
+import SkillStackPage from "./pages/SkillStackPage";
+import AccountPage from "./pages/AccountPage";
+import ErrorPage from "./pages/ErrorPage"
 
 function App() {
   return (
-    <div>
-      <GlobalStyles />
-      <Portfolio />
-    </div>
+    <Routes>
+      <Route exact path="/" element={ <HomePage /> } />
+      <Route path="/project" element={ <ProjectPage /> } />
+      <Route path="/skillStack" element={ <SkillStackPage /> } />
+      <Route path="/account" element={ <AccountPage /> } />
+      <Route path='*' element={<ErrorPage />} />
+    </Routes>
   );
 }
 

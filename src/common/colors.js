@@ -1,6 +1,5 @@
 const colors = {
-    mainBg: "grey",
-    mainColor: "#000",
+    mainColor: "#D71313",
     // mainColor: "#B10000",
 };
 
