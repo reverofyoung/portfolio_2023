@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import './index.css';
+// import './index.css';
 import App from './App';
 import GlobalStyles from './common/GlobalStyles';
 
@@ -10,8 +10,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <GlobalStyles />
-      <App />
+        <GlobalStyles />
+        <App />
     </BrowserRouter>
   </React.StrictMode>
 );

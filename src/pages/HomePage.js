@@ -1,42 +1,88 @@
 import { useState } from "react";
 import styled, { keyframes } from "styled-components"
+import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
 import colors from "../common/colors";
 import { Link } from "react-router-dom";
 import MenuComp from "../component/MenuComp";
 import FooterComp from "../component/FooterComp";
+import freitag from "../image/freitag.png"
 
 
 const MainWrap = styled.main`
     height: 100vh;
     width: 100vw;
+    background-color: ${ colors.mainColor };
 `;
 
 const MainSection = styled.section`
-    box-sizing: border-box;
     display: flex;
-    flex-direction: column;
     font-family: 'Noto Sans', sans-serif;
     height: 100%;
-    /* justify-content: space-between; */
-    padding: 20px;
-    position: relative;
+    position: relative; 
     width: 100%;
 `;
 
+const Divide = styled.article`
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    padding: 20px 20px 60px 20px;
+    position: relative;
+    width: 50%;
+`;
+
 const PersonalArticle = styled.article`
-    color: ${ colors.mainColor };
+    box-sizing: border-box;
+    color: ${ colors.fontColor };
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 30px;
     font-weight: 900;
     /* height: 100%; */
     margin-bottom: 40px;
-    width: 50%;
+    /* padding: 20px; */
+    width: 100%;
 
     @media screen and (max-width: 768px) {
         flex-direction: column;
         font-size: 24px;
         width: 100%;
     };
+`;
+
+const ProjectArticle = styled.article`
+    justify-content: flex-end;
+    display: flex;
+        div {
+            /* background-color: red; */
+            /* height: 400px;
+            width: 25%; */
+        }
+`;
+
+const ProjectCon = styled.div`
+    position: relative;
+    height: 400px;
+    width: 25%;
+    overflow: hidden;
+ 
+`;
+
+const DimBox = styled.div`
+    background-color: rgba(255,255,255,0);
+    cursor: pointer;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    &:hover{
+        background-color: rgba(255,255,255,0.4);
+    }
+`;
+
+const ProjectImage = styled.img`
+
+    height: 100%;
 `;
 
 const InfoBox = styled.div`
@@ -61,7 +107,7 @@ const InfoBox = styled.div`
 `;
 
 const MenuButton = styled.button`
-    background-color: ${ colors.mainColor };
+    background-color: ${ colors.fontColor };
     color: white;
     height: 40px;
     position: absolute;
@@ -76,22 +122,49 @@ const MenuButton = styled.button`
 `;
 
 const MenuArticle = styled.article`
-justify-content: flex-end;
+    justify-content: flex-end;
     width: fit-content;
     
     li {
-        color: ${ colors.mainColor };
+        color: ${ colors.fontColor };
         font-family: 'Noto Sans KR', sans-serif;
-        font-size: 65px;
+        font-size: 60px;
         font-weight: 900;
-        margin-bottom: 50px;
-        text-decoration: underline;
+        margin-bottom: 20px;
+        /* text-decoration: underline; */
 
-        &:hover{
-            font-size: 70px;
+        &:hover {
+                color: lightgray;
+                /* font-size: 21px; */
+                letter-spacing: 10px;
+
+        div {
+            
         }
+        }
+       
+
+
     }
 `;
+
+const NotificationDot = styled.div`
+    align-items: center;
+    background-color: red;
+    border-radius: 50px;
+    box-sizing: border-box;
+    color: white;
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    height: 20px;
+    justify-content: center;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    width: 20px;
+`;
+
 
 function HomePage() {
     const [menuState, setMenuState] = useState(false);
@@ -105,6 +178,7 @@ function HomePage() {
         <MainWrap>
             <MainSection>
                 {/* ---------- 메인 컨텐츠 ---------- */}
+                <Divide>
                 <PersonalArticle style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <InfoBox>
                         <div style={{ fontFamily: 'Noto Sans KR' }}>안녕하세요</div>
@@ -117,18 +191,37 @@ function HomePage() {
                         {/* <div>FRONTEND DEVELOPER</div> */}
                     </InfoBox>   
                 </PersonalArticle>
-                <PersonalArticle style={{ fontSize:'16px', fontWeight: '300' }}>
+                {/* <PersonalArticle style={{ fontSize:'16px', fontWeight: '300' }}>
                     <InfoBox>2021.07 - 2022.09 IT 스타트업 '디케이랩' 근무</InfoBox>
                     <InfoBox>2016.03 - 2019.02 계원예술대학교 디지털미디어디자인과 졸업</InfoBox>
-                </PersonalArticle>
+                </PersonalArticle> */}
+
+                {/* <ProjectArticle>
+                    <ProjectCon>
+                        <Link to="/project">
+                            <DimBox></DimBox>
+                            <ProjectImage src={ freitag } alt={ '캡쳐이미지' }></ProjectImage>
+                        </Link> 
+                    </ProjectCon>
+                    <ProjectCon></ProjectCon>
+                    <ProjectCon style={{ backgroundColor: 'lightGrey' }}></ProjectCon>
+                    <ProjectCon></ProjectCon>
+                </ProjectArticle> */}
                 
                 <MenuArticle>
                     <ul>
-                        <Link to="/project"><li>프로젝트 (4)</li></Link>
+                        <Link to="/project">
+                            <li style={{ position: 'relative' }}>
+                                <div> 프로젝트 </div>
+                                {/* <NotificationDot>4</NotificationDot> */}
+                            </li>
+                        </Link>
                         <Link to="/skillStack"><li>기술 스택</li></Link>
-                        <Link to="/account"><li>계정</li></Link>
+                        <Link to="/account"><li>더보기</li></Link>
                     </ul>
                 </MenuArticle>
+                </Divide>
+                {/* <Divide style={{ backgroundColor: colors.mainColor }}>dd</Divide> */}
             </MainSection>
 
             {/* ---------- 메뉴 버튼 및 메뉴 화면 ---------- */}

@@ -22,7 +22,7 @@ const MenuSection = styled.section`
     left: 0;
     position: absolute;
     top: 0;
-    width: 100%;
+    width: 50%;
     animation: ${ menuAnimation } .2s linear ;
 
     @media screen and (max-width: 768px) {
@@ -75,7 +75,7 @@ function MenuComp() {
                     <Link to="/"><li onClick={ onClickMenuBtn }>홈</li></Link>
                     <Link to="/project"><li>프로젝트</li></Link>
                     <Link to="/skillStack"><li>기술 스택</li></Link>
-                    <Link to="/account"><li>계정</li></Link>
+                    <Link to="/account"><li>더보기...</li></Link>
                 </ul>
             </MenuArticle>
         </MenuSection>

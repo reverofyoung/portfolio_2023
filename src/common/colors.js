@@ -1,6 +1,6 @@
 const colors = {
-    mainColor: "#D71313",
-    // mainColor: "#B10000",
+    mainColor: "#fff",
+    fontColor: "#"
 };
 
 export default colors;
