@@ -4,7 +4,7 @@ import colors from "../common/colors";
 import MenuComp from "../component/MenuComp";
 import FooterComp from "../component/FooterComp";
 
-const AboutSection = styled.section`
+const MainWrap = styled.main`
     box-sizing: border-box;
     font-family: 'Noto Sans', sans-serif;
     height: 100%;
@@ -13,14 +13,14 @@ const AboutSection = styled.section`
 `;
 
 const SectionTitle = styled.div`
-    color: ${ colors.mainColor };
+    color: ${ colors.fontColor };
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 30px;
     font-weight: 900;
     margin-bottom: 50px;
 `;
 
-const AboutArticle = styled.article`
+const AboutSection = styled.section`
     width: 60%;
 
     @media screen and (max-width: 768px) {
@@ -30,8 +30,7 @@ const AboutArticle = styled.article`
     };
 `;
 
-const SkillWrap = styled.div`
-    /* background-color: ${ colors.mainColor }; */
+const SkillWrap = styled.article`
     display: flex;
     margin-bottom: 18px;
 
@@ -42,10 +41,10 @@ const SkillWrap = styled.div`
 
 const SkillName = styled.div`
     align-items: center;
-    border: 1px solid ${ colors.mainColor };
+    border: 1px solid ${ colors.fontColor };
     border-radius: 30px;
     box-sizing: border-box;
-    color: ${ colors.mainColor };
+    color: ${ colors.fontColor };
     display: flex;
     font-family: 'Noto Sans', sans-serif;
     font-size: 25px;
@@ -57,8 +56,8 @@ const SkillName = styled.div`
     /* width: fit-content; */
 
     &:hover,  &:focus{
-        background-color: ${ colors.mainColor };
-        color: #fff;
+        background-color: ${ colors.fontColor };
+        color: ${ colors.mainColor };
     }
 
     @media screen and (max-width: 768px) {
@@ -76,42 +75,21 @@ const SkillDesc = styled.div`
     line-height: 1.3;
 `;
 
-const MenuButton = styled.button`
-    background-color: ${ colors.mainColor };
-    color: white;
-    height: 40px;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    width: 40px;
-    z-index: 100;
-
-    &:hover {
-        background-color: red;
-    }
-`;
-
 function SkillStackPage () {
-    const [menuState, setMenuState] = useState(false);
-    const [descStates, setDescStates] = useState({});
+    const [showDesc, setShowDesc] = useState({});
 
-    const onClickMenuBtn = () => {
-        setMenuState(!menuState);
-    };
-
+    // 마우스 들어올 때
     const onMouseOverName = (id) => {
-        setDescStates((preState) => ({
+        setShowDesc((preState) => ({
             ...preState,
             [id] : !preState[id],
         }));
-        // setDescStates(true);
     };
 
+    // 마우스가 벗어날 떄
     const onMouseLeaveName = () => {
-        setDescStates(false);
+        setShowDesc(false);
     };
-
-    console.log('descStates', descStates);
 
     const skillList = [
         {
@@ -142,27 +120,23 @@ function SkillStackPage () {
     ];
     
     return(
-        <AboutSection>
+        <MainWrap>
             <SectionTitle>기술 스택</SectionTitle>
-                <AboutArticle>
+                <AboutSection>
                     {
                         skillList.map((skill) => {
                             const dataId = skill.name;
                             return(
                                 <SkillWrap key={ dataId }>
                                     <SkillName onMouseOver={ () => onMouseOverName(dataId) } onMouseLeave={ onMouseLeaveName }>{ skill.name }</SkillName>
-                                    { descStates[dataId] && ( <SkillDesc>{ skill.describtion }</SkillDesc> )}
+                                    { showDesc[dataId] && ( <SkillDesc>{ skill.describtion }</SkillDesc> )}
                                 </SkillWrap>
                             )
                         })
                     }
-                </AboutArticle>
-
-            { menuState ? <MenuButton onClick={ onClickMenuBtn }>닫기</MenuButton> : <MenuButton onClick={ onClickMenuBtn }>열기</MenuButton> }
-            { menuState && <MenuComp />  }    
-
+                </AboutSection>
             <FooterComp />
-        </AboutSection>
+        </MainWrap>
     )
 };
 

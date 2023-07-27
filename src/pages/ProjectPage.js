@@ -1,25 +1,27 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components"
+import { PiArrowLeftThin } from 'react-icons/pi'; 
 
 import colors from "../common/colors";
 import freitag from "../image/freitag.png"
 import chamkit from "../image/chamkit.png"
 
-import MenuComp from "../component/MenuComp";
 import FooterComp from "../component/FooterComp";
-import Project01 from "./project/Project01";
+import ProjectModal from "../component/ProjectModal";
 
 const MainWrap = styled.main`
-
+    box-sizing: border-box;
+    font-family: 'Noto Sans', 'Noto Sans KR';
+    height: 100vh;
+    padding: 20px;
+    position: relative;
+    width: 100vw;
 `;
 
 const ProjectSection = styled.section`
-    box-sizing: border-box;
     display: flex;
-    font-family: 'Noto Sans', sans-serif;
     height: 100%;
-    padding: 20px;
     width: 100%;
 
     @media screen and (max-width: 768px) {
@@ -27,189 +29,199 @@ const ProjectSection = styled.section`
     };
 `;
 
+const SectionTitle = styled.article`
+    height: fit-content;
+    width: 50%;
+
+    h1 {
+        color: ${ colors.fontColor };
+        font-family: 'Noto Sans KR', sans-serif;
+        font-size: 50px;
+        font-weight: 900;
+
+        @media screen and (max-width: 768px) {
+            font-size: 28px;
+            margin-bottom: 60px;
+        };
+    }    
+`;
+
 const ProjectArticle = styled.article`
     height: 100%;
     width: 50%;
 
     @media screen and (max-width: 768px) {
+        flex: 1;
         margin-bottom: 100px;
         width: 100%;
     };
 `;
 
-const SectionTitle = styled.div`
-    color: ${ colors.fontColor };
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 50px;
-    font-weight: 900;
-    margin-bottom: 20px;
-
-    @media screen and (max-width: 768px) {
-       font-size: 28px;
-    };
-    
-`;
-
 const ProjectList = styled.ul`
+
     li {
         cursor: pointer;
         font-size: 50px;
         font-weight: 900;
-        margin-bottom: 15px;
+        margin-bottom: 22px;
 
         @media screen and (max-width: 768px) {
-            font-size: 28px;  
+            font-size: 24px;  
+            line-height: 1.3;
         };
     }
 `;
 
-const ProjectWrap = styled.div`
-    border-top: 1px solid ${ colors.fontColor };
-    box-sizing: border-box;
-    display: flex;
-    /* justify-content: space-between; */
-    padding: 40px 0px;
-`;
-
-const ProjectTitle = styled.div`
-    min-width: 15%;
-    width: 15%;
-`;
-
-const ProjectContents = styled.div`
-    line-height: 1.5;
-    min-width: 80%;
-    width: 80%;
-`;
-
-const ProjectSrc = styled.div`
-`;
-
-const ProjectImage = styled.img`
-`;
-
-const MenuButton = styled.button`
-    background-color: ${ colors.mainColor };
-    color: white;
-    height: 40px;
+const HomeButton = styled.button`
+    bottom: 20px;
+    font-size: 50px;
+    font-weight: 600;
+    left: 20px;
     position: absolute;
-    right: 20px;
-    top: 20px;
-    width: 40px;
-    z-index: 100;
 
     &:hover {
-        background-color: red;
+        color: red;
     }
+
+    @media screen and (max-width: 768px) {
+        bottom: initial;
+        font-size: 24px;  
+        left: initial;
+        right: 20px;
+        top: 20px;
+    };
 `;
 
 function ProjectPage() {
-    const [menuState, setMenuState] = useState(false);
-    const [projectState, setprojectState] = useState(false);
- 
+    const [selectedProject, setSelectedProject] = useState(null);
 
-    {/* ---------- 메뉴 버튼 클릭 이벤트 ---------- */}
-    const onClickMenuBtn = () => {
-        setMenuState(!menuState);
+    {/* ---------- 프로젝트 목록 클릭 이벤트 ---------- */}
+    const showModal = (project) => {
+        setSelectedProject(project);
     };
 
-    {/* ---------- 프로젝트 버튼 클릭 이벤트 ---------- */}
-    const onClickProject = () => {
-        setprojectState(true);
-    };
-
-    const projectList = [
+      {/* ---------- 프로젝트 목록 클릭 ---------- */}
+     const projectMenu = [
         {
-            title: 'READ',
+            name: 'READ',
             subTitle: '독서 일기 관리 어플리케이션',
-            image: freitag,
-            describtion: '평소 독서 관련 앱을 사용하면서 느낀 아쉬운 점을 보완하고자 기획하게 되었다. ' ,
-            function: `
-                1. 카카오 책 검색 API 활용 -> 검색한 책 데이터 다음(Daum)에서 JSON으로 받아오기
-                2. Redux toolkit을 사용한 도서 관련 데이터 상태 관리
-                3. 메인에 현재 읽고 읽는 책 보여주기
-                4. 읽기 전, 읽는중, 읽은 후 단계별 독서일기 작성 가능
-            `,
-            part: '기여도 개발 100% / 기획 50% ',
+            date: '2023.04 - 2023.07',
+            part: '팀 프로젝트(2인) | 기획 95% / 개발 100% 참여 ',
+            skill: 'HTML, CSS, React Native, Redux Toolkit, expo',
+            describtion: ` 
+                평소 독서 관련 앱을 사용하면서 독후감 뿐만 아니라 읽기 전(독전감), 읽는 중(독중감)에도 작성할 수 있는 
+                독서 일기 형태면 좋겠다는 생각을 시작으로 기획하게 되었다.
+
+                단계별로 '독전감'을 반드시 작성해야만 '독중감', 그 후에 '독후감'으로 넘어갈 수 있도록 하여
+                약간의 강제성을 부여하면서 사용자가 독서에 대한 책임감을 느낄 수 있도록 하는 것이 목표이다.` ,
+            function: [
+                '카카오 API를 활용한 책 검색 기능',
+                'Redux Toolkit을 활용한 독서 상태 및 독서 일기 관리',
+                'Stack Navigator를 활용한 화면 전환',
+                '메인에 현재 읽는 중인 도서 불러오기',
+                '독후감(완독)을 작성하면 자동으로 독서 상태 완독으로 변경'
+            ],
             src: 'https://reverofyoung.github.io/read-project/',
+            image: freitag,
             alt: '독서 일기 기록 어플리케이션 메인 이미지'
         },
         {
-            title: '대시보드',
-            subTitle: '카페에서 작업하는 것을 즐기는 프리랜서를 위한 웹 대시보드',
-            image: chamkit,
+            name: '대시보드',
+            subTitle: '프리랜서를 위한 웹 대시보드',
+            date: '2023.06 - (진행중)',
+            part: '개인 프로젝트 | 100% 참여',
+            skill: 'HTML, CSS, JavaScript, React',
             describtion: '카페에서 작업하는 프리랜서를 위한 웹 대시보드',
+            function: [
+                '카카오 API를 활용한 책 검색 기능',
+                'Redux Toolkit을 활용한 독서 상태 및 독서 일기 관리',
+                'Stack Navigator를 활용한 화면 전환',
+                '메인에 현재 읽는 중인 도서 불러오기',
+                '독후감(완독)을 작성하면 자동으로 독서 상태 완독으로 변경'
+            ],
             src: 'https://reverofyoung.github.io/dashboard-project/',
-            alt: '참킷 웹사이트 메인 이미지'
-        },
-        {
-            title: '프라이탁',
-            subTitle: '스위스의 업사이클 브랜드인 프라이탁의 브랜드 스토리텔링 웹 사이트',
-            image: freitag,
-            describtion: '기여도 개발 100% / 기획 100%',
-            src: 'https://reverofyoung.github.io/freitag-project/',
-            alt: '프라이탁 웹사이트 메인 이미지'
-        },
-        {
-            title: '참킷',
-            subTitle: '커스터마이징 가능한 페스티벌 굿즈 키트 브랜딩 및 웹 쇼핑몰',
+            alt: '참킷 웹사이트 메인 이미지',
             image: chamkit,
+        },
+        {
+            name: '포트폴리오',
+            subTitle: '2023년 포트폴리오 웹 사이트',
+            date: '2023.07',
+            part: '개인 프로젝트 | 100% 참여',
+            skill: 'HTML, CSS, JavaScript, React',
+            describtion: '포트폴리오 웹 사이트이다. ',
+            function: [
+                'React Route, Link 컴포넌트를 활용한 화면 전환',
+            ],
+            src: 'https://reverofyoung.github.io/portfolio_2023/',
+            image: chamkit,
+            alt: '포트폴리오 웹사이트 메인 이미지',
+        },
+        {
+            name: '프라이탁',
+            subTitle: '프라이탁의 브랜드 스토리텔링 웹 사이트',
+            date: '2018 졸업작품',
+            part: '개인 프로젝트 | 100% 참여',
+            skill: 'HTML, CSS, JavaScript, jQuery',
+            describtion: '기여도 개발 100% / 기획 100%',
+            function: [
+                '메뉴 호버 애니메이션',
+            ],
+            src: 'https://reverofyoung.github.io/freitag-project/',
+            image: freitag,
+            alt: '프라이탁 웹사이트 메인 이미지',
+        },
+        {
+            name: '참킷',
+            subTitle: '커스터마이징 가능한 페스티벌 굿즈 키트 브랜딩 및 웹 쇼핑몰',
+            date: '2018 졸업작품',
+            part: '팀 프로젝트(5인) | 기획 90%, 개발 100% 참여',
+            skill: 'HTML, CSS, JavaScript, jQuery',
             describtion: 'HTML, CSS, Jquery를 사용한 ',
+            function: [
+                '쇼핑몰 레이아웃 구현',
+            ],
             src: 'https://reverofyoung.github.io/chamkit-project/',
+            image: chamkit,
             alt: '참킷 웹사이트 메인 이미지'
         }
     ];
 
-
     return(
-        <ProjectSection>
-            <ProjectArticle>
-                <SectionTitle>프로젝트</SectionTitle>
-            </ProjectArticle>
+        <MainWrap>
+            <ProjectSection>
+                {/* ---------- 페이지 타이틀 ---------- */}
+                <SectionTitle>
+                    <h1>프로젝트</h1>
+                </SectionTitle>
 
-            <ProjectArticle>
-                <ProjectList>
-                    {/* <Link to={ "/project/01" }>
-                        <li>1. 독서 일기 어플리케이션 'READ'</li>
-                    </Link> */}
-                    <li onClick={ onClickProject }>1. 독서 일기 어플리케이션 'READ'</li>
-                    
-                    <li>2. 프리랜서를 위한 웹 대시보드</li>
-                    <li>3. 포트폴리오 2023</li>
-                    <li>4. 프라이탁 브랜드 스토리텔링</li>
-                </ProjectList>
-            </ProjectArticle>
+                {/* ---------- 프로젝트 목록 ---------- */}
+                <ProjectArticle>
+                    <ProjectList>
+                        {
+                            projectMenu?.map((project) => {
+                                const dataId = project.name;
 
+                                return(
+                                    <li key={ dataId } onClick={ () => showModal(project) }>{ project.subTitle }</li>
+                                )
+                            })
+                        }
+                    </ProjectList>
+                </ProjectArticle>
+            </ProjectSection>
 
-        { projectState && <Project01 /> }
-            
-                {/* {
-                    projectList.map((thisResult) => {
-                        const dataId = thisResult.src;
-                        return(
-                            <ProjectWrap key={ dataId }>
-                                <ProjectTitle>
-                                    <div style={{ fontSize: '25px' }}>{ thisResult.title }</div>
-                                    <div style={{ fontSize: '14px' }}>{ thisResult.subTitle }</div>
-                                </ProjectTitle>
-                                <ProjectContents>
-                                    <div>{ thisResult.describtion }</div>
-                                    <div>{ thisResult.function }</div>
-                                </ProjectContents>
-                                <ProjectSrc>
-                                    <button onClick={()=>{window.open(thisResult.src)}}>바로 보기</button>
-                                </ProjectSrc>
-                                <ProjectImage src={ thisResult.image } alt={ thisResult.alt }></ProjectImage>
-                            </ProjectWrap>
-                        )
-                    })2
-                } */}
+            {/* ---------- 홈으로 가기 버튼 ---------- */}
+            <HomeButton>  
+                <Link to="/" style={{ display: 'flex',alignItems: 'center' }}><PiArrowLeftThin />홈으로</Link>
+            </HomeButton>
 
-        { menuState ? <MenuButton onClick={ onClickMenuBtn }>닫기</MenuButton> : <MenuButton onClick={ onClickMenuBtn }>열기</MenuButton> }
-        { menuState && <MenuComp />  }   
+            {/* ---------- 프로젝트 자세히 보기 모달 ---------- */}
+            { selectedProject && (<ProjectModal onClose={() => setSelectedProject(null)} project={selectedProject} /> ) }
 
-        <FooterComp /> 
-        </ProjectSection>
+            {/* ---------- 푸터 컴포넌트 가져오기 ---------- */}
+            <FooterComp /> 
+        </MainWrap>
     )
 
 }
