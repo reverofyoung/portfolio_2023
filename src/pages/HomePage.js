@@ -134,17 +134,10 @@ const MenuArticle = styled.article`
         /* text-decoration: underline; */
 
         &:hover {
-                color: lightgray;
-                /* font-size: 21px; */
-                letter-spacing: 10px;
-
-        div {
-            
+            color: lightgray;
+            /* font-size: 21px; */
+            letter-spacing: 10px;
         }
-        }
-       
-
-
     }
 `;
 

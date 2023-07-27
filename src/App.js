@@ -4,6 +4,7 @@ import ProjectPage from "./pages/ProjectPage";
 import SkillStackPage from "./pages/SkillStackPage";
 import AccountPage from "./pages/AccountPage";
 import ErrorPage from "./pages/ErrorPage"
+import Project01 from "./pages/project/Project01";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/project" element={ <ProjectPage /> } />
       <Route path="/skillStack" element={ <SkillStackPage /> } />
       <Route path="/account" element={ <AccountPage /> } />
+      <Route path="/project/01" element={ <Project01 /> } />
       <Route path='*' element={<ErrorPage />} />
     </Routes>
   );

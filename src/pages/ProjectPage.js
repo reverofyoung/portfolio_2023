@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import styled, { keyframes } from "styled-components"
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components"
 
 import colors from "../common/colors";
 import freitag from "../image/freitag.png"
 import chamkit from "../image/chamkit.png"
+
 import MenuComp from "../component/MenuComp";
 import FooterComp from "../component/FooterComp";
+import Project01 from "./project/Project01";
 
+const MainWrap = styled.main`
+
+`;
 
 const ProjectSection = styled.section`
     box-sizing: border-box;
@@ -99,9 +103,9 @@ const MenuButton = styled.button`
     }
 `;
 
-
 function ProjectPage() {
     const [menuState, setMenuState] = useState(false);
+    const [projectState, setprojectState] = useState(false);
  
 
     {/* ---------- 메뉴 버튼 클릭 이벤트 ---------- */}
@@ -109,6 +113,10 @@ function ProjectPage() {
         setMenuState(!menuState);
     };
 
+    {/* ---------- 프로젝트 버튼 클릭 이벤트 ---------- */}
+    const onClickProject = () => {
+        setprojectState(true);
+    };
 
     const projectList = [
         {
@@ -152,42 +160,6 @@ function ProjectPage() {
         }
     ];
 
-    const ProjectComp = () => {
-
-        return(
-            <ProjectArticle>
-                <div style={{ display: 'flex', }}>
-                    {/* <div style={{ marginRight: '30px' }}>
-                        <div style={{ fontWeight: '600' }}>READ</div>
-                        <div>Dashboard</div>
-                        <div>2023 portfolio</div>
-                        <div>FREITAG</div>
-                    </div> */}
-                    <div>
-                        <div>
-                            <div>READ</div>
-                            <div>독서 일기 관리 어플리케이션</div>
-                        </div>
-                        <div>2023.04 - 2023.07</div>
-                        <div>기획 80%, 개발 100% 참여</div>
-                    </div>
-                    <div>HTML, CSS, React Native, Redux Toolkit, expo</div>
-                    <div>
-                        <div>
-                            <p>카카오 API를 활용한 책 검색 기능</p>
-                            <p>Redux Toolkit을 활용한 독서 상태 및 독서 일기 관리</p>
-                            <p>Stack Navigator를 활용한 화면 전환</p>
-                            <p>메인에 현재 읽는 중인 도서 불러오기</p>
-                            <p>독후감(완독)을 작성하면 자동으로 독서 상태 '완독'으로 변경</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>바로 가기</div>
-                    </div>
-                </div>
-            </ProjectArticle>
-        )
-    };
 
     return(
         <ProjectSection>
@@ -197,14 +169,20 @@ function ProjectPage() {
 
             <ProjectArticle>
                 <ProjectList>
-                    <li>1. 독서 일기 어플리케이션 'READ'</li>
+                    {/* <Link to={ "/project/01" }>
+                        <li>1. 독서 일기 어플리케이션 'READ'</li>
+                    </Link> */}
+                    <li onClick={ onClickProject }>1. 독서 일기 어플리케이션 'READ'</li>
+                    
                     <li>2. 프리랜서를 위한 웹 대시보드</li>
                     <li>3. 포트폴리오 2023</li>
                     <li>4. 프라이탁 브랜드 스토리텔링</li>
                 </ProjectList>
             </ProjectArticle>
-           
 
+
+        { projectState && <Project01 /> }
+            
                 {/* {
                     projectList.map((thisResult) => {
                         const dataId = thisResult.src;
@@ -224,7 +202,7 @@ function ProjectPage() {
                                 <ProjectImage src={ thisResult.image } alt={ thisResult.alt }></ProjectImage>
                             </ProjectWrap>
                         )
-                    })
+                    })2
                 } */}
 
         { menuState ? <MenuButton onClick={ onClickMenuBtn }>닫기</MenuButton> : <MenuButton onClick={ onClickMenuBtn }>열기</MenuButton> }
