@@ -50,7 +50,6 @@ const PersonalArticle = styled.article`
     };
 `;
 
-
 const InfoBox = styled.div`
     padding-bottom: 15px;
     width: fit-content;
@@ -94,11 +93,11 @@ const MenuArticle = styled.article`
 
         &:hover { animation: ${textAnimation} .8s ease infinite; }
 
-        @media screen and (max-width: 768px) { font-size: 50px; };
+        @media screen and (max-width: 768px) { font-size: 50px;  margin-bottom: 40px; };
 
     }
 
-    @media screen and (max-width: 768px) { width: 100%; };
+    @media screen and (max-width: 768px) { align-items: center; width: 100%; };
 
 `;
 
@@ -123,7 +122,7 @@ function HomePage() {
                         <ul>
                             <Link to="/project"><li>프로젝트</li></Link>
                             <Link to="/skillStack"><li>기술 스택</li></Link>
-                            <Link to="/account"><li>더보기</li></Link>
+                            <Link to="/about"><li>더보기</li></Link>
                         </ul>
                     </MenuArticle>
             </MainSection>

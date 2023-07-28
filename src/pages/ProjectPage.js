@@ -15,11 +15,6 @@ const fadeAnimation = keyframes`
   100% { opacity: 1; }
 `;
 
-const titleAnimation = keyframes`
-  0% { transform: translateY(-40px); }
-  100% { transform: translateY(0px); }
-`;
-
 const MainWrap = styled.main`
     font-family: 'Noto Sans', 'Noto Sans KR';
     height: 100vh;
@@ -46,13 +41,12 @@ const SectionTitle = styled.article`
         font-size: 50px;
         font-weight: 900;
 
-        &:hover { animation: ${ titleAnimation } .8s ease-in  };
-
         @media screen and (max-width: 768px) {
-            font-size: 28px;
+            font-size: 60px;
             margin-bottom: 60px;
         };
-    }    
+    }   
+    @media screen and (max-width: 768px) { width: 100%; }; 
 `;
 
 const ProjectArticle = styled.article`
