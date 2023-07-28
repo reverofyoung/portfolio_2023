@@ -1,6 +1,7 @@
 const colors = {
-    mainColor: "#fff",
-    fontColor: "#000"
+    mainColor: "#F6F4EB",
+    fontColor: "#000",
+    pointColor: "#CF0000",
 };
 
 export default colors;

@@ -3,7 +3,7 @@ import colors from "../common/colors";
 
 const FooterSection = styled.section`
     bottom: 20px;
-    color: ${ colors.fontColor };
+    color: ${ colors.pointColor };
     font-size: 12px;
     right: 20px;
     position: fixed;

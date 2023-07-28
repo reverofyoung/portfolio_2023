@@ -12,7 +12,8 @@ import { BiLogoReact } from "react-icons/bi";
 import { BiLogoRedux } from "react-icons/bi";
 
 const MainWrap = styled.main`
-background-color: #FBD85D;
+    background-color: ${ colors.mainColor };
+    color: ${ colors.fontColor };
     font-family: 'Noto Sans KR', sans-serif;
     height: 100vh;
     padding: 20px;
@@ -29,21 +30,18 @@ const SectionTitle = styled.article`
     width: 50%;
 
     h1 {
-        color: ${ colors.fontColor };
         font-family: 'Noto Sans KR', sans-serif;
         font-size: 50px;
         font-weight: 900;
 
         @media screen and (max-width: 768px) {
-            font-size: 60px;
+            font-size: 44px;
             margin-bottom: 60px;
         };
     }  
 
     @media screen and (max-width: 768px) { width: 100%; };
-
 `;
-
 
 const SkillSection = styled.section`
     display: flex;
@@ -59,7 +57,7 @@ const SkillSection = styled.section`
 `;
 
 const SkillWrap = styled.article`
-    background-color: #F1C93B;
+    background-color: #EAE8DB;
     border-radius: 15px;
     display: flex;
     flex-direction: column;

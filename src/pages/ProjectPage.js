@@ -16,6 +16,8 @@ const fadeAnimation = keyframes`
 `;
 
 const MainWrap = styled.main`
+    background-color: ${ colors.mainColor };
+    color: ${ colors.fontColor };
     font-family: 'Noto Sans', 'Noto Sans KR';
     height: 100vh;
     padding: 20px;
@@ -36,13 +38,12 @@ const SectionTitle = styled.article`
     width: 50%;
 
     h1 {
-        color: ${ colors.fontColor };
         font-family: 'Noto Sans KR', sans-serif;
         font-size: 50px;
         font-weight: 900;
 
         @media screen and (max-width: 768px) {
-            font-size: 60px;
+            font-size: 44px;
             margin-bottom: 60px;
         };
     }   
@@ -50,7 +51,7 @@ const SectionTitle = styled.article`
 `;
 
 const ProjectArticle = styled.article`
-    height: 100%;
+    height: fit-content;
     width: 50%;
 
     @media screen and (max-width: 768px) {
@@ -68,8 +69,8 @@ const ProjectList = styled.ul`
         margin-bottom: 22px;
 
         &:hover { 
-            /* color: red; */
-            animation: ${ fadeAnimation } .2s ease-in;
+            animation: ${ fadeAnimation } .2s ease-in; 
+            color: ${ colors.pointColor }; 
         }
 
         @media screen and (max-width: 768px) {
@@ -77,6 +78,11 @@ const ProjectList = styled.ul`
             line-height: 1.3;
         };
     }
+`;
+
+const GuideText = styled.p`
+font-size: 12px;
+    font-weight: 100;
 `;
 
 
@@ -196,8 +202,10 @@ function ProjectPage() {
                             })
                         }
                     </ProjectList>
+                    <GuideText>모든 소스 코드는 <a href="https://github.com/reverofyoung" target="_blank">https://github.com/reverofyoung</a> 이곳에서 보실 수 있어요!</GuideText>
                 </ProjectArticle>
             </ProjectSection>
+
 
             {/* ---------- 프로젝트 자세히 보기 모달 ---------- */}
             { selectedProject && (<ProjectModal onClose={() => setSelectedProject(null)} project={selectedProject} /> ) }

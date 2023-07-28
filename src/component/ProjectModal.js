@@ -43,7 +43,7 @@ const CloseButton = styled.button`
     font-size: 18px;
     float: right;
 
-    &:hover { color: red; }
+    &:hover { color: ${ colors.fontColor }; }
 `;  
 
 const ModalContentsSection = styled.section`

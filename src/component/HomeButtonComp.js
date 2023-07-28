@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
-import { PiArrowLeftThin } from 'react-icons/pi'; 
+
+import colors from "../common/colors";
+
+import { PiArrowLeftThin } from 'react-icons/pi';  
 
 const HomeButton = styled.button`
     bottom: 20px;
+    color: ${ colors.fontColor };
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 50px;
     font-weight: 600;
@@ -11,7 +15,7 @@ const HomeButton = styled.button`
     position: absolute;
 
     &:hover {
-        color: red;
+        color: ${ colors.pointColor };
     }
 
     @media screen and (max-width: 768px) {
@@ -27,7 +31,7 @@ function HomeButtonComp() {
 
     return(
     <HomeButton>  
-        <Link to="/" style={{ display: 'flex',alignItems: 'center' }}><PiArrowLeftThin />홈으로</Link>
+        <Link to="/" style={{ display: 'flex',alignItems: 'center' }}><PiArrowLeftThin />홈</Link>
     </HomeButton>
     )
 };

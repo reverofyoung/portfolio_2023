@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { styled } from "styled-components";
 
 import colors from "../common/colors";
@@ -6,6 +5,8 @@ import FooterComp from "../component/FooterComp";
 import HomeButtonComp from "../component/HomeButtonComp";
 
 const AccountSection = styled.section`
+    background-color: ${ colors.mainColor };
+    color: ${ colors.fontColor };
     font-family: 'Noto Sans KR', sans-serif;
     height: 100vh;
     padding: 20px;
@@ -25,7 +26,7 @@ const SectionTitle = styled.article`
         margin-bottom: 25px;
 
         @media screen and (max-width: 768px) {
-            font-size: 60px;
+            font-size: 44px;
             margin-bottom: 20px;
         };
     }    
