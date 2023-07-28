@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { styled } from "styled-components";
+
 import colors from "../common/colors";
-import MenuComp from "../component/MenuComp";
 import FooterComp from "../component/FooterComp";
+import HomeButtonComp from "../component/HomeButtonComp";
 
 const MainWrap = styled.main`
     box-sizing: border-box;
@@ -34,9 +35,7 @@ const SkillWrap = styled.article`
     display: flex;
     margin-bottom: 18px;
 
-    @media screen and (max-width: 768px) {
-       margin-right: 30px;
-    };
+    @media screen and (max-width: 768px) { margin-right: 30px; };
 `;
 
 const SkillName = styled.div`
@@ -55,7 +54,7 @@ const SkillName = styled.div`
     padding: 10px 20px;
     /* width: fit-content; */
 
-    &:hover,  &:focus{
+    &:hover, &:focus{
         background-color: ${ colors.fontColor };
         color: ${ colors.mainColor };
     }
@@ -126,6 +125,7 @@ function SkillStackPage () {
                     {
                         skillList.map((skill) => {
                             const dataId = skill.name;
+                            
                             return(
                                 <SkillWrap key={ dataId }>
                                     <SkillName onMouseOver={ () => onMouseOverName(dataId) } onMouseLeave={ onMouseLeaveName }>{ skill.name }</SkillName>
@@ -135,6 +135,7 @@ function SkillStackPage () {
                         })
                     }
                 </AboutSection>
+            <HomeButtonComp />
             <FooterComp />
         </MainWrap>
     )

@@ -7,18 +7,9 @@ import MenuComp from "../component/MenuComp";
 import FooterComp from "../component/FooterComp";
 
 const menuAnimation = keyframes`
-  0% {
-    /* color: ${ colors.fontColor }; */
-    letter-spacing: 0px;
-  }
-  50%{
-    /* color: red; */
-    letter-spacing: 10px;
-  }
-  100% {
-    /* color: ${ colors.fontColor }; */
-    letter-spacing: 0px;
-  }
+  0% { letter-spacing: 0px; }
+  50%{ letter-spacing: 10px; }
+  100% { letter-spacing: 0px; }
 `;
 
 const MainWrap = styled.main`
@@ -77,7 +68,6 @@ const InfoBox = styled.div`
     };
 `;
 
-
 const MenuArticle = styled.article`
     align-items: flex-end;
     display: flex;
@@ -98,32 +88,13 @@ const MenuArticle = styled.article`
             letter-spacing: 10px;
         }
 
-        @media screen and (max-width: 768px) {
-            font-size: 50px;
-        };
+        @media screen and (max-width: 768px) { font-size: 50px; };
 
     }
-    @media screen and (max-width: 768px) {
-        width: 100%;
-    };
+
+    @media screen and (max-width: 768px) { width: 100%; };
 
 `;
-
-const MenuButton = styled.button`
-    background-color: ${ colors.fontColor };
-    color: white;
-    height: 40px;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    width: 40px;
-    z-index: 100;
-
-    &:hover {
-        background-color: red;
-    }
-`;
-
 
 function HomePage() {
 

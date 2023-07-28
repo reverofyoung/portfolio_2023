@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components"
-import { PiArrowLeftThin } from 'react-icons/pi'; 
 
 import colors from "../common/colors";
+import FooterComp from "../component/FooterComp";
+import ProjectModal from "../component/ProjectModal";
+import HomeButtonComp from "../component/HomeButtonComp";
+
 import freitag from "../image/freitag.png"
 import chamkit from "../image/chamkit.png"
 
-import FooterComp from "../component/FooterComp";
-import ProjectModal from "../component/ProjectModal";
 
 const MainWrap = styled.main`
     box-sizing: border-box;
@@ -24,9 +24,7 @@ const ProjectSection = styled.section`
     height: 100%;
     width: 100%;
 
-    @media screen and (max-width: 768px) {
-        flex-direction: column;
-    };
+    @media screen and (max-width: 768px) { flex-direction: column; };
 `;
 
 const SectionTitle = styled.article`
@@ -58,12 +56,13 @@ const ProjectArticle = styled.article`
 `;
 
 const ProjectList = styled.ul`
-
     li {
         cursor: pointer;
         font-size: 50px;
         font-weight: 900;
         margin-bottom: 22px;
+
+        &:hover { co }
 
         @media screen and (max-width: 768px) {
             font-size: 24px;  
@@ -72,25 +71,6 @@ const ProjectList = styled.ul`
     }
 `;
 
-const HomeButton = styled.button`
-    bottom: 20px;
-    font-size: 50px;
-    font-weight: 600;
-    left: 20px;
-    position: absolute;
-
-    &:hover {
-        color: red;
-    }
-
-    @media screen and (max-width: 768px) {
-        bottom: initial;
-        font-size: 24px;  
-        left: initial;
-        right: 20px;
-        top: 20px;
-    };
-`;
 
 function ProjectPage() {
     const [selectedProject, setSelectedProject] = useState(null);
@@ -211,15 +191,13 @@ function ProjectPage() {
                 </ProjectArticle>
             </ProjectSection>
 
-            {/* ---------- 홈으로 가기 버튼 ---------- */}
-            <HomeButton>  
-                <Link to="/" style={{ display: 'flex',alignItems: 'center' }}><PiArrowLeftThin />홈으로</Link>
-            </HomeButton>
-
             {/* ---------- 프로젝트 자세히 보기 모달 ---------- */}
             { selectedProject && (<ProjectModal onClose={() => setSelectedProject(null)} project={selectedProject} /> ) }
 
-            {/* ---------- 푸터 컴포넌트 가져오기 ---------- */}
+            {/* ---------- 홈 버튼 ---------- */}
+            <HomeButtonComp />
+
+            {/* ---------- 푸터 ---------- */}
             <FooterComp /> 
         </MainWrap>
     )
