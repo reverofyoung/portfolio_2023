@@ -48,7 +48,6 @@ const SkillWrap = styled.article`
     padding: 20px;
     width: 300px;
 
-
     @media screen and (max-width: 768px) {
         margin-bottom: 20px;
         margin-right: 0px;
