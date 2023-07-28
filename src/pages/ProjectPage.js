@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 
 import colors from "../common/colors";
 import FooterComp from "../component/FooterComp";
@@ -9,9 +9,18 @@ import HomeButtonComp from "../component/HomeButtonComp";
 import freitag from "../image/freitag.png"
 import chamkit from "../image/chamkit.png"
 
+const fadeAnimation = keyframes`
+  0% { opacity: 1; }
+  50%{ opacity: 0; }
+  100% { opacity: 1; }
+`;
+
+const titleAnimation = keyframes`
+  0% { transform: translateY(-40px); }
+  100% { transform: translateY(0px); }
+`;
 
 const MainWrap = styled.main`
-    box-sizing: border-box;
     font-family: 'Noto Sans', 'Noto Sans KR';
     height: 100vh;
     padding: 20px;
@@ -36,6 +45,8 @@ const SectionTitle = styled.article`
         font-family: 'Noto Sans KR', sans-serif;
         font-size: 50px;
         font-weight: 900;
+
+        &:hover { animation: ${ titleAnimation } .8s ease-in  };
 
         @media screen and (max-width: 768px) {
             font-size: 28px;
@@ -62,7 +73,10 @@ const ProjectList = styled.ul`
         font-weight: 900;
         margin-bottom: 22px;
 
-        &:hover { co }
+        &:hover { 
+            /* color: red; */
+            animation: ${ fadeAnimation } .2s ease-in;
+        }
 
         @media screen and (max-width: 768px) {
             font-size: 24px;  

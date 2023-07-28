@@ -6,10 +6,16 @@ import { Link } from "react-router-dom";
 import MenuComp from "../component/MenuComp";
 import FooterComp from "../component/FooterComp";
 
-const menuAnimation = keyframes`
-  0% { letter-spacing: 0px; }
+const textAnimation = keyframes`
+  0% { letter-spacing: 0px; transform: translateX(-40px); }
   50%{ letter-spacing: 10px; }
-  100% { letter-spacing: 0px; }
+  100% { letter-spacing: 0px; transform: translateX(0px); }
+`;
+
+const moveAnimation = keyframes`
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
 `;
 
 const MainWrap = styled.main`
@@ -20,7 +26,6 @@ const MainWrap = styled.main`
 `;
 
 const MainSection = styled.section`
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -30,7 +35,6 @@ const MainSection = styled.section`
 `;
 
 const PersonalArticle = styled.article`
-    box-sizing: border-box;
     color: ${ colors.fontColor };
     display: flex;
     font-size: 30px;
@@ -48,18 +52,24 @@ const PersonalArticle = styled.article`
 
 
 const InfoBox = styled.div`
-    box-sizing: border-box;
     padding-bottom: 15px;
     width: fit-content;
     
     p {
         font-family: 'Noto Sans KR';
         margin-bottom: 20px;
+/* 
+        span:nth-of-type(1) {  animation: ${ moveAnimation } .8s ease-in-out; animation-delay: .3s;}
+        span:nth-of-type(2) {  animation: ${ moveAnimation } .8s ease-in-out; animation-delay: .5s;}
+        span:nth-of-type(3) {  animation: ${ moveAnimation } .8s ease-in-out; animation-delay: .7s;}
+        span:nth-of-type(4) {  animation: ${ moveAnimation } .8s ease-in-out; animation-delay: .9s;}
+        span:nth-of-type(5) {  animation: ${ moveAnimation } .8s ease-in-out; animation-delay: 1.1s;} */
 
         @media screen and (max-width: 768px) {
             font-size: 24px;
             margin-bottom: 15px;
         };
+        
     }
 
     @media screen and (max-width: 768px) {
@@ -81,12 +91,8 @@ const MenuArticle = styled.article`
         font-size: 60px;
         font-weight: 900;
         margin-bottom: 20px;
-        /* text-decoration: underline; */
 
-        &:hover {
-            animation: ${menuAnimation} .8s ease infinite;
-            letter-spacing: 10px;
-        }
+        &:hover { animation: ${textAnimation} .8s ease infinite; }
 
         @media screen and (max-width: 768px) { font-size: 50px; };
 
@@ -106,7 +112,6 @@ function HomePage() {
                         <InfoBox>
                             <p>안녕하세요</p>
                             <p>이윤영입니다.</p>
-                            {/* <div style={{ fontFamily: 'Noto Sans TC' }}>李胤永</div> */}
                         </InfoBox>
                         <InfoBox>
                             <p>프론트엔드 개발자</p>

@@ -4,6 +4,7 @@ import { PiArrowLeftThin } from 'react-icons/pi';
 
 const HomeButton = styled.button`
     bottom: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 50px;
     font-weight: 600;
     left: 20px;

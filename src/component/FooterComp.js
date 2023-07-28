@@ -6,7 +6,7 @@ const FooterSection = styled.section`
     color: ${ colors.fontColor };
     font-size: 12px;
     right: 20px;
-    position: absolute;
+    position: fixed;
 
     @media screen and (max-width: 768px) {
         font-size: 10px;
