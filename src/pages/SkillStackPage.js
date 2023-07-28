@@ -80,7 +80,6 @@ const SkillDesc = styled.div`
     p {
         line-height: 1.5;
     }
-
 `;
 
 function SkillStackPage () {
