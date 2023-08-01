@@ -27,11 +27,12 @@ const MainWrap = styled.main`
 const SectionTitle = styled.article`
     height: fit-content;
     margin-bottom: 70px;
+    /* padding: 20px; */
     width: 50%;
 
     h1 {
         font-family: 'Noto Sans KR', sans-serif;
-        font-size: 50px;
+        font-size: 48px;
         font-weight: 900;
 
         @media screen and (max-width: 768px) {
@@ -44,7 +45,9 @@ const SectionTitle = styled.article`
 `;
 
 const SkillSection = styled.section`
+    /* border: 1px solid ${ colors.fontColor }; */
     display: flex;
+    flex: 1;
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
@@ -57,13 +60,15 @@ const SkillSection = styled.section`
 `;
 
 const SkillWrap = styled.article`
-    background-color: #EAE8DB;
-    border-radius: 15px;
+    /* background-color: #EFEBD7; */
+    border: 1px solid ${ colors.fontColor };
+    /* border-radius: 15px; */
     display: flex;
     flex-direction: column;
-    height: fit-content;
-    margin-bottom: 30px;
+    height: 100%;
     padding: 20px;
+    margin-bottom: 30px;
+    /* width: 25%; */
     width: 300px;
 
     @media screen and (max-width: 768px) {
@@ -176,20 +181,6 @@ function SkillStackPage () {
                             <p>기본 개념과 사용법을 알고 있으며 여러 개의 컴포넌트 상태를 관리할 수 있습니다.</p>
                         </SkillDesc>
                     </SkillWrap>
-
-                    {/* {
-                        skillList.map((skill) => {
-                            const dataId = skill.name;
-
-                            return(
-                                <SkillWrap key={ dataId }>
-                                    <SkillName><BiLogoRedux /></SkillName>
-                                    <SkillName>{ skill.name }</SkillName>
-                                     <SkillDesc>{ skill.describtion }</SkillDesc>
-                                </SkillWrap>
-                            )
-                        })
-                    } */}
                 </SkillSection>
             <HomeButtonComp />
             <FooterComp />

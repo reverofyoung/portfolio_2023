@@ -17,10 +17,10 @@ const fadeAnimation = keyframes`
 
 const MainWrap = styled.main`
     background-color: ${ colors.mainColor };
+    border: 1px solid ${ colors.fontColor };
     color: ${ colors.fontColor };
     font-family: 'Noto Sans', 'Noto Sans KR';
     height: 100vh;
-    padding: 20px;
     position: relative;
     width: 100vw;
 `;
@@ -35,11 +35,12 @@ const ProjectSection = styled.section`
 
 const SectionTitle = styled.article`
     height: fit-content;
+    padding: 20px;
     width: 50%;
 
     h1 {
         font-family: 'Noto Sans KR', sans-serif;
-        font-size: 50px;
+        font-size: 48px;
         font-weight: 900;
 
         @media screen and (max-width: 768px) {
@@ -51,38 +52,52 @@ const SectionTitle = styled.article`
 `;
 
 const ProjectArticle = styled.article`
-    height: fit-content;
+    border-left: 1px solid ${ colors.fontColor };
+    /* border-right: 2px solid ${ colors.fontColor }; */
+    height: 100%;
     width: 50%;
 
     @media screen and (max-width: 768px) {
+        border-top: 1px solid ${ colors.fontColor };
+        border-left:none;
         flex: 1;
-        margin-bottom: 100px;
         width: 100%;
     };
 `;
 
 const ProjectList = styled.ul`
     li {
+        border-bottom: 1px solid ${ colors.fontColor };
         cursor: pointer;
-        font-size: 50px;
-        font-weight: 900;
-        margin-bottom: 22px;
+        padding: 20px;
 
-        &:hover { 
-            animation: ${ fadeAnimation } .2s ease-in; 
-            color: ${ colors.pointColor }; 
+        p {
+            font-size: 48px;
+            font-weight: 600;
+
+            &:hover { 
+                animation: ${ fadeAnimation } .2s ease-in; 
+                color: ${ colors.pointColor }; 
+            }
+
+            @media screen and (max-width: 768px) {
+                font-size: 24px;  
+                line-height: 1.3;
+            };
         }
-
-        @media screen and (max-width: 768px) {
-            font-size: 24px;  
-            line-height: 1.3;
-        };
     }
 `;
 
 const GuideText = styled.p`
-font-size: 12px;
-    font-weight: 100;
+    color: ${ colors.pointColor };
+    font-size: 12px;
+    font-weight: 300;
+    margin: 10px;
+    
+    a{
+        text-decoration: underline;
+        font-weight: 500;
+    }
 `;
 
 
@@ -94,8 +109,8 @@ function ProjectPage() {
         setSelectedProject(project);
     };
 
-      {/* ---------- 프로젝트 목록 클릭 ---------- */}
-     const projectMenu = [
+    {/* ---------- 프로젝트 목록 클릭 ---------- */}
+    const projectMenu = [
         {
             name: 'READ',
             subTitle: '독서 일기 관리 어플리케이션',
@@ -105,9 +120,9 @@ function ProjectPage() {
             describtion: ` 
                 평소 독서 관련 앱을 사용하면서 독후감 뿐만 아니라 읽기 전(독전감), 읽는 중(독중감)에도 작성할 수 있는 
                 독서 일기 형태면 좋겠다는 생각을 시작으로 기획하게 되었다.
-
                 단계별로 '독전감'을 반드시 작성해야만 '독중감', 그 후에 '독후감'으로 넘어갈 수 있도록 하여
-                약간의 강제성을 부여하면서 사용자가 독서에 대한 책임감을 느낄 수 있도록 하는 것이 목표이다.` ,
+                약간의 강제성을 부여하면서 사용자가 독서에 대한 책임감을 느낄 수 있도록 하는 것이 목표이다.
+            ` ,
             function: [
                 '카카오 API를 활용한 책 검색 기능',
                 'Redux Toolkit을 활용한 독서 상태 및 독서 일기 관리',
@@ -125,16 +140,20 @@ function ProjectPage() {
             date: '2023.06 - (진행중)',
             part: '개인 프로젝트 | 100% 참여',
             skill: 'HTML, CSS, JavaScript, React',
-            describtion: '카페에서 작업하는 프리랜서를 위한 웹 대시보드',
+            describtion: ` 
+                최근 '카공족'이라는 신조어가 급격히 떠오르고 있다. 당장 주위만 둘러봐도 카페에서 공부나 작업하는 모습을 쉽게 볼 수 있다.
+                나 역시도 주로 카페에 가서 작업을 하기 때문에 이러한 상황을 반영하여 프리랜서들을 위한 웹 대시보드를 기획하게 되었다.` 
+            ,
             function: [
-                '카카오 API를 활용한 책 검색 기능',
-                'Redux Toolkit을 활용한 독서 상태 및 독서 일기 관리',
-                'Stack Navigator를 활용한 화면 전환',
-                '메인에 현재 읽는 중인 도서 불러오기',
-                '독후감(완독)을 작성하면 자동으로 독서 상태 완독으로 변경'
+                '사용자 이름 등록',
+                '현재 시간 및 날짜 확인',
+                'OpenWeather API를 활용한 현재 날씨 정보 받아오기',
+                '투두 리스트 추가, 수정, 삭제',
+                '투두 리스트 로컬스토리지에 저장',
+                '카카오맵 API를 활용한 현재 나의 위치 근처 카페 정보 받아오기'
             ],
             src: 'https://reverofyoung.github.io/dashboard-project/',
-            alt: '참킷 웹사이트 메인 이미지',
+            alt: '웹 대시보드 메인 이미지',
             image: chamkit,
         },
         {
@@ -143,9 +162,15 @@ function ProjectPage() {
             date: '2023.07',
             part: '개인 프로젝트 | 100% 참여',
             skill: 'HTML, CSS, JavaScript, React',
-            describtion: '포트폴리오 웹 사이트이다. ',
+            describtion: ` 
+                그동안의 작업물들을 모아둔 포트폴리오 웹 사이트이다. 리액트의 컴포넌트를 다양하게 사용해보는 것을 목표로 제작하였다. 
+                홈에서는 각 화면으로 이동 가능한 메뉴 버튼을 볼 수 있다. 프로젝트는 작업물을 볼 수 있는 메뉴이며, 기술 스택은 현재 사용 가능한, 사용해본 경험이 있는 기술을 작성해뒀다.
+                더보기에서는 이메일, 개발 블로그 등의 계정과 함께 간단한 자기소개를 볼 수 있다.
+            `, 
             function: [
-                'React Route, Link 컴포넌트를 활용한 화면 전환',
+                '반복적으로 사용되는 컨텐츠 컴포넌트화', 
+                '반복문 map을 활용한 데이터 렌더링',
+                'props를 이용한 모달 상태 전달',
             ],
             src: 'https://reverofyoung.github.io/portfolio_2023/',
             image: chamkit,
@@ -157,9 +182,14 @@ function ProjectPage() {
             date: '2018 졸업작품',
             part: '개인 프로젝트 | 100% 참여',
             skill: 'HTML, CSS, JavaScript, jQuery',
-            describtion: '기여도 개발 100% / 기획 100%',
+            describtion: `
+                스위스의 업사이클링 브랜드인 프라이탁의 브랜드 스토리텔링을 목적으로 기획한 웹 사이트다. 
+                CSS를 활용한 기본적인 애니메이션과 애니메이션 라이브러리인 GSAP를 사용하여 컨텐츠를 강조하는 것에 힘썼다. 
+            `,
             function: [
-                '메뉴 호버 애니메이션',
+                'menu : 각 항목의 호버 애니메이션',
+                'story, process : 다양한 레이아웃과 스크롤 높이에 따라 컨텐츠가 나타나는 애니메이션',
+                'product : 마우스 클릭 이벤트 활용, 각 제품 클릭시 제품 상세 페이지 모달의 class 값을 변경하여 모달 보이기, 숨기기 구현',
             ],
             src: 'https://reverofyoung.github.io/freitag-project/',
             image: freitag,
@@ -171,9 +201,16 @@ function ProjectPage() {
             date: '2018 졸업작품',
             part: '팀 프로젝트(5인) | 기획 90%, 개발 100% 참여',
             skill: 'HTML, CSS, JavaScript, jQuery',
-            describtion: 'HTML, CSS, Jquery를 사용한 ',
+            describtion: `
+                페스티벌에 필요한 굿즈를 키트로 제공하는 브랜드를 기획하였다.
+                각 페스티벌에 맞는 키트 구성품을 커스터마이징 할 수 있다는 것이 특징이고, 
+                브랜드의 특징인 커스터마이징을 가장 잘 보여줄 수 있는 것이 직접 커스터마이징 과정을 경험할 수 있는 쇼핑몰 형태의 웹이라 생각하여 웹 쇼핑몰을 개발하게 되었다.
+            `,
             function: [
-                '쇼핑몰 레이아웃 구현',
+                '브랜드의 아이덴티티를 엿볼 수 있는 home', 
+                '팀 소개를 볼 수 있는 about', 
+                '쇼핑몰 레이아웃을 적용한 shop',
+                '키트 구성품을 직접 커스텀 할 수 있는 custom',
             ],
             src: 'https://reverofyoung.github.io/chamkit-project/',
             image: chamkit,
@@ -193,16 +230,19 @@ function ProjectPage() {
                 <ProjectArticle>
                     <ProjectList>
                         {
-                            projectMenu?.map((project) => {
+                            projectMenu?.map((project, index) => {
                                 const dataId = project.name;
+                                const dataNo = index + 1;
 
                                 return(
-                                    <li key={ dataId } onClick={ () => showModal(project) }>{ project.subTitle }</li>
+                                    <li key={ dataId } onClick={ () => showModal(project) }>
+                                        <p>{ dataNo }. { project.subTitle }</p>
+                                    </li>
                                 )
                             })
                         }
                     </ProjectList>
-                    <GuideText>모든 소스 코드는 <a href="https://github.com/reverofyoung" target="_blank">https://github.com/reverofyoung</a> 이곳에서 보실 수 있어요!</GuideText>
+                    {/* <GuideText>모든 소스 코드는 <a href="https://github.com/reverofyoung" target="_blank">https://github.com/reverofyoung</a>에서 보실 수 있어요!</GuideText> */}
                 </ProjectArticle>
             </ProjectSection>
 

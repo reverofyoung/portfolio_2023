@@ -17,7 +17,8 @@ const ModalWrap = styled.main`
 
 const ModalSection = styled.section`
     background-color: ${ colors.mainColor };
-    border-radius: 10px;
+    border: 2px solid ${ colors.fontColor };
+    /* border-radius: 10px; */
     box-sizing: border-box;
     display: flex;
     font-family: 'Noto Sans KR', 'Noto Sans';
@@ -43,15 +44,13 @@ const CloseButton = styled.button`
     font-size: 18px;
     float: right;
 
-    &:hover { color: ${ colors.fontColor }; }
+    &:hover { color: ${ colors.pointColor }; }
 `;  
 
 const ModalContentsSection = styled.section`
     overflow-y: scroll;
 
-    &::-webkit-scrollbar {
-        display: none;
-    }
+    &::-webkit-scrollbar { display: none; }
 `;
 
 const ProjectDescSection = styled.section`
@@ -100,7 +99,8 @@ const DescArticle = styled.article`
 
     button {
         cursor: pointer;
-        &:hover { color: lightgray; }
+        
+        &:hover { color: ${ colors.pointColor }; }
     };
 
     @media screen and (max-width: 768px) {
@@ -118,7 +118,6 @@ const FunctionList = styled.ul`
 `;
 
 const ProjectImageSection = styled.section`
-    background-color: lightgray;
     box-sizing: border-box;
     flex: 1;
     width: 100%;

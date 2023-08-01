@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
-import { styled } from "styled-components";
+import { keyframes, styled } from "styled-components";
 
 import colors from "../common/colors";
 
 import { PiArrowLeftThin } from 'react-icons/pi';  
+
+const homeBtnAnimation = keyframes`
+  0% { transform: rotate(5deg) }
+  100% { transform: rotate(-5deg) }
+`;
+
 
 const HomeButton = styled.button`
     bottom: 20px;
@@ -16,6 +22,7 @@ const HomeButton = styled.button`
 
     &:hover {
         color: ${ colors.pointColor };
+        animation: ${ homeBtnAnimation } .2s ease-in-out infinite;
     }
 
     @media screen and (max-width: 768px) {
