@@ -45,7 +45,6 @@ const AboutSection = styled.section`
     @media screen and (max-width: 768px) { flex-direction: column; };
 `;
 
-
 const AboutArticle = styled.section`
     display: flex;
     width: 50%;
