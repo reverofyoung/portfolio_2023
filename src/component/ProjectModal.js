@@ -81,17 +81,24 @@ const DescArticle = styled.article`
     h1 {
         font-size: 24px;
         font-weight: 900;
-        margin-bottom: 13px;
+        margin-bottom: 15px;
     };
 
     h3 {
         font-weight: 300;
     };
 
+    span {
+        font-weight: 100;
+        margin-bottom: 17px;
+        
+        @media screen and (max-width: 768px) {  margin-bottom: 10px; };
+    }
+
     p {
         font-family: 'Noto Sans KR', 'Noto Sans ';
         font-size: 14px;
-        font-weight: 100;
+        font-weight: 400;
         line-height: 1.4;
         margin-bottom: 5px;
 
@@ -101,8 +108,10 @@ const DescArticle = styled.article`
     button {
         color: ${ colors.fontColor };
         cursor: pointer;
+        text-decoration: underline;
         
         &:hover { color: ${ colors.pointColor }; }
+        @media screen and (max-width: 768px) { font-size: 16px};
     };
 
     @media screen and (max-width: 768px) {
@@ -148,9 +157,9 @@ function ProjectModal({ onClose, project }) {
                         </DescArticle>
 
                         <DescArticle>
-                            <p>{ project.date }</p>
-                            <p>{ project.part }</p>
-                            <p>{ project.skill }</p>
+                            <span>{ project.date }</span>
+                            <span>{ project.part }</span>
+                            <span>{ project.skill }</span>
                         </DescArticle>
 
                         <DescArticle>

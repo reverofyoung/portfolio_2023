@@ -27,7 +27,6 @@ const MainWrap = styled.main`
 const SectionTitle = styled.article`
     height: fit-content;
     margin-bottom: 70px;
-    /* padding: 20px; */
     width: 50%;
 
     h1 {
@@ -41,7 +40,10 @@ const SectionTitle = styled.article`
         };
     }  
 
-    @media screen and (max-width: 768px) { width: 100%; };
+    @media screen and (max-width: 768px) { 
+        margin-bottom: 40px;
+        width: 100%; 
+    };
 `;
 
 const SkillSection = styled.section`
