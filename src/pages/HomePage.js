@@ -110,6 +110,7 @@ const MenuButton = styled.div`
     width: 100%;
 
     button {
+        color: ${ colors.fontColor };
         cursor: pointer;
         font-family: 'Noto Sans KR', sans-serif;
         font-size: 48px;

@@ -41,6 +41,7 @@ const ModalButtonSection = styled.section`
 `;
 
 const CloseButton = styled.button`
+    color: ${ colors.fontColor };
     font-size: 18px;
     float: right;
 
@@ -98,6 +99,7 @@ const DescArticle = styled.article`
     };
 
     button {
+        color: ${ colors.fontColor };
         cursor: pointer;
         
         &:hover { color: ${ colors.pointColor }; }
