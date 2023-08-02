@@ -28,7 +28,7 @@ const MainSection = styled.section`
     width: 100%;
 `;
 
-const PersonalArticle = styled.article`
+const TitleArticle = styled.article`
     display: flex;
     justify-content: space-between;
     padding: 20px;
@@ -138,24 +138,14 @@ function HomePage() {
         <MainWrap>
             <MainSection>
                     {/* ---------- 인적사항 ---------- */}
-                    <PersonalArticle>
+                    <TitleArticle>
                         <ArticleBox>
                             {/* <p style={{ fontFamily: 'Noto Sans TC' }}>李胤永</p> */}
                             <h1>이윤영</h1>
                             <h1>프론트엔드 개발</h1>
                             <h1>포트폴리오</h1>
                         </ArticleBox>
-
-                        {/* <ArticleBox>
-                            <ParagraphBox>
-                                <p>저의 포트폴리오에 찾아와주셔서 감사합니다! </p>
-                                <p>진행했던 프로젝트들의 코드는 <a href="https://github.com/reverofyoung" target="_blank">깃허브</a>에서 볼 수 있어요.
-                                개인적으로 공부하는 내용이나 어려웠던 부분은 <a href="https://velog.io/@reverofyoung" target="_blank">벨로그</a>에 조금씩 기록하고 있습니다. 
-                                궁금하신 사항이 있다면 <a href="mailto:reverofyoung@gmail.com">메일</a>로 연락 해주세요!
-                                언제든 환영입니다 :-)</p>
-                            </ParagraphBox>
-                        </ArticleBox>    */}
-                    </PersonalArticle>
+                    </TitleArticle>
                 
                     {/* ---------- 포트폴리오 메뉴 ---------- */}
                     <MenuArticle>

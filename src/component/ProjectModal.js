@@ -17,14 +17,12 @@ const ModalWrap = styled.main`
 
 const ModalSection = styled.section`
     background-color: ${ colors.mainColor };
-    border: 2px solid ${ colors.fontColor };
-    /* border-radius: 10px; */
+    border: 1px solid ${ colors.fontColor };
     box-sizing: border-box;
     display: flex;
     font-family: 'Noto Sans KR', 'Noto Sans';
     flex-direction: column;
     height: 90%;
-    overflow-y: scroll;
     padding: 20px;
     position: relative;
     width: 95%;
@@ -51,7 +49,18 @@ const CloseButton = styled.button`
 const ModalContentsSection = styled.section`
     overflow-y: scroll;
 
-    &::-webkit-scrollbar { display: none; }
+    ::-webkit-scrollbar { width: 0px; };
+
+    ::-webkit-scrollbar-thumb {
+        background-clip: padding-box;
+        background-color: rgb(0,0,0,1);
+        border: 1px solid transparent;
+    };
+
+    ::-webkit-scrollbar-track {
+        background-color: rgb(0,0,0,0.2);
+        border-radius: 3px;
+    };
 `;
 
 const ProjectDescSection = styled.section`
