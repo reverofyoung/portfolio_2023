@@ -6,6 +6,8 @@ import FooterComp from "../component/FooterComp";
 import ProjectModal from "../component/ProjectModal";
 import HomeButtonComp from "../component/HomeButtonComp";
 
+import portfolio from "../image/portfolio.png"
+import dashboard from "../image/dashboard.png"
 import freitag from "../image/freitag.png"
 import chamkit from "../image/chamkit.png"
 
@@ -88,17 +90,17 @@ const ProjectList = styled.ul`
     }
 `;
 
-const GuideText = styled.p`
-    color: ${ colors.pointColor };
-    font-size: 12px;
-    font-weight: 300;
-    margin: 10px;
+// const GuideText = styled.p`
+//     color: ${ colors.pointColor };
+//     font-size: 12px;
+//     font-weight: 300;
+//     margin: 10px;
     
-    a{
-        text-decoration: underline;
-        font-weight: 500;
-    }
-`;
+//     a{
+//         text-decoration: underline;
+//         font-weight: 500;
+//     }
+// `;
 
 
 function ProjectPage() {
@@ -109,7 +111,7 @@ function ProjectPage() {
         setSelectedProject(project);
     };
 
-    {/* ---------- 프로젝트 목록 클릭 ---------- */}
+    {/* ---------- 프로젝트 목록 ---------- */}
     const projectMenu = [
         {
             name: 'READ',
@@ -154,7 +156,7 @@ function ProjectPage() {
             ],
             src: 'https://reverofyoung.github.io/dashboard-project/',
             alt: '웹 대시보드 메인 이미지',
-            image: chamkit,
+            image: dashboard,
         },
         {
             name: '포트폴리오',
@@ -173,7 +175,7 @@ function ProjectPage() {
                 'props를 이용한 모달 상태 전달',
             ],
             src: 'https://reverofyoung.github.io/portfolio_2023/',
-            image: chamkit,
+            image: portfolio,
             alt: '포트폴리오 웹사이트 메인 이미지',
         },
         {

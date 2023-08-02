@@ -26,11 +26,11 @@ const SectionTitle = styled.article`
 
     h1 {
         font-family: 'Noto Sans KR', sans-serif;
-        font-size: 48px;
+        font-size: 45px;
         font-weight: 900;
 
         @media screen and (max-width: 768px) {
-            font-size: 44px;
+            font-size: 45px;
             margin-bottom: 60px;
         };
     }  
@@ -100,8 +100,8 @@ function AboutPage() {
                         {/* <p>프론트엔드 개발자로 성장중인 이윤영입니다.</p> */}
                         <p>저의 포트폴리오에 찾아와주셔서 감사합니다! </p>
                         <p>진행했던 프로젝트들의 코드는 <a href="https://github.com/reverofyoung" target="_blank">깃허브</a>에서 볼 수 있어요.
-                        개인적으로 공부하는 내용이나 어려웠던 부분은 <a href="https://velog.io/@reverofyoung" target="_blank">벨로그</a>에 조금씩 기록하고 있습니다. 
-                        궁금하신 사항이 있다면 <a href="mailto:reverofyoung@gmail.com">메일</a>로 연락 해주세요!
+                        개인적으로 공부하는 내용이나 어려웠던 부분은 <a href="https://velog.io/@reverofyoung" target="_blank">벨로그</a>에 조금씩 기록하고 있습니다.</p>
+                        <p>궁금하신 사항이 있다면 <a href="mailto:reverofyoung@gmail.com">메일</a>로 연락 해주세요!
                         언제든 환영입니다 :-)</p>
 
                     </AboutContents>
