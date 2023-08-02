@@ -10,7 +10,6 @@ const MainWrap = styled.section`
     color: ${ colors.fontColor };
     font-family: 'Noto Sans KR', sans-serif;
     height: 100vh;
-
     width: 100%;
 
     @media screen and (max-width: 768px) { 
@@ -20,7 +19,10 @@ const MainWrap = styled.section`
 `;
 
 
-const AboutSection = styled.section``;
+const AboutSection = styled.section`
+    padding: 120px;
+`;
+
 
 const TitleArticle = styled.article`
     height: fit-content;
