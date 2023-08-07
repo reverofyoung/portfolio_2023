@@ -21,8 +21,11 @@ const MainWrap = styled.section`
 
 const AboutSection = styled.section`
     padding: 120px;
-`;
 
+    @media screen and (max-width: 768px) {
+        padding: 20px;
+    };
+`;
 
 const TitleArticle = styled.article`
     height: fit-content;
@@ -62,8 +65,10 @@ const PersonalCon = styled.div`
         font-weight: 300;
         margin-bottom: 10px;
 
-        @media screen and (max-width: 768px) { font-size: 12px; width: 100%; };
+        @media screen and (max-width: 768px) { font-size: 13px; width: 100%; };
     }
+
+    @media screen and (max-width: 768px) { width: 100%; };
 `;
 
 const AboutCon = styled.article`

@@ -178,11 +178,11 @@ function ProjectModal({ onClose, project }) {
                         <DescArticle>
                             <FunctionList>
                             {
-                                functionList.map((thisFunction) => {
+                                functionList ? functionList.map((thisFunction) => {
                                     return(
                                         <li>{ thisFunction }</li>
                                     )
-                                })
+                                }) : null
                             }
                             </FunctionList>
                         </DescArticle>
