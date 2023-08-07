@@ -21,4 +21,4 @@
 우선 배열 안에 프로젝트 데이터를 정리하였다. 그리고 각 프로젝트 항목을 클릭했을 때, 배열 안에 있는 데이터의 id와 클릭된 항목의 id가 같을 경우 해당 데이터를 props로 모달에 전달하였고,
 모달 안에서는 받아온 데이터를 반복문을 사용하여 렌더링 하는 방식으로 개발했다. 
 
-### [포트폴리오 보러가기](https://reverofyoung.github.io/dashboard-project/)
+### [포트폴리오 보러가기]( https://reverofyoung.github.io/portfolio_2023/)
