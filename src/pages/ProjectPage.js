@@ -133,7 +133,7 @@ function ProjectPage() {
                 '독후감(완독)을 작성하면 자동으로 독서 상태 완독으로 변경'
             ],
             src: 'https://reverofyoung.github.io/read-project/',
-            image: freitag,
+            // image: freitag,
             alt: '독서 일기 기록 어플리케이션 메인 이미지'
         },
         {

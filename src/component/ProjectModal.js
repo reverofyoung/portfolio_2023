@@ -180,7 +180,7 @@ function ProjectModal({ onClose, project }) {
                             {
                                 functionList ? functionList.map((thisFunction) => {
                                     return(
-                                        <li>{ thisFunction }</li>
+                                        <li key={ thisFunction }>{ thisFunction }</li>
                                     )
                                 }) : null
                             }
@@ -194,7 +194,10 @@ function ProjectModal({ onClose, project }) {
                         
                     {/* ---------- 프로젝트 이미지 ---------- */}
                     <ProjectImageSection>
-                        <img src={ project.image } alt={ project.alt } ></img>
+                        {
+                            project.image === undefined ? null :  <img src={ project.image } alt={ project.alt } ></img>
+                        }
+
                     </ProjectImageSection>
                 </ModalContentsSection>
             </ModalSection>
