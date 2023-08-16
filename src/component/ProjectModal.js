@@ -47,20 +47,9 @@ const CloseButton = styled.button`
 `;  
 
 const ModalContentsSection = styled.section`
+    box-sizing: border-box;
     overflow-y: scroll;
-
-    ::-webkit-scrollbar { width: 0px; };
-
-    ::-webkit-scrollbar-thumb {
-        background-clip: padding-box;
-        background-color: rgb(0,0,0,1);
-        border: 1px solid transparent;
-    };
-
-    ::-webkit-scrollbar-track {
-        background-color: rgb(0,0,0,0.2);
-        border-radius: 3px;
-    };
+    padding-right: 10px;
 `;
 
 const ProjectDescSection = styled.section`
