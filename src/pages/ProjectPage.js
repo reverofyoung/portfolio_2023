@@ -139,7 +139,7 @@ function ProjectPage() {
         {
             name: '대시보드',
             subTitle: '프리랜서를 위한 웹 대시보드',
-            date: '2023.06 - (진행중)',
+            date: '2023.06 - 2023.07',
             part: '개인 프로젝트 | 100% 참여',
             skill: 'HTML, CSS, JavaScript, React',
             describtion: ` 

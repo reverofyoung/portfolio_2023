@@ -195,7 +195,7 @@ function ProjectModal({ onClose, project }) {
                     {/* ---------- 프로젝트 이미지 ---------- */}
                     <ProjectImageSection>
                         {
-                            project.image === undefined ? null :  <img src={ project.image } alt={ project.alt } ></img>
+                            project.image === undefined ? <p>이미지 준비중😢</p> :  <img src={ project.image } alt={ project.alt } ></img>
                         }
 
                     </ProjectImageSection>
