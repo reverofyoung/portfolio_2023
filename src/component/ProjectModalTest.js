@@ -134,7 +134,7 @@ const ProjectImageSection = styled.section`
     img { width: 100%; }
 `;
 
-function ProjectModal({ onClose, project }) {
+function ProjectModalTest({ onClose, project }) {
     const functionList = project.function;
 
     return(
@@ -186,12 +186,12 @@ function ProjectModal({ onClose, project }) {
                         {
                             project.image === undefined ? <p>이미지 준비중😢</p> :  <img src={ project.image } alt={ project.alt } ></img>
                         }
-
                     </ProjectImageSection>
                 </ModalContentsSection>
             </ModalSection>
-        </ModalWrap>
+        </ModalWrap>    
     )
-};
 
-export default ProjectModal;
+}
+
+export default ProjectModalTest;
