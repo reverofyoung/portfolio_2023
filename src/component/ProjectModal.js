@@ -48,8 +48,9 @@ const CloseButton = styled.button`
 
 const ModalContentsSection = styled.section`
     box-sizing: border-box;
+    display: flex;
     overflow-y: scroll;
-    padding-right: 10px;
+    /* padding-right: 10px; */
 `;
 
 const ProjectDescSection = styled.section`
@@ -70,6 +71,10 @@ const ProjectDescSection = styled.section`
         flex-direction: column;
         margin-bottom: 50px;
     };
+`;
+
+const ProjectArticle = styled.article`
+    width: 50%;
 `;
 
 const DescArticle = styled.article`
@@ -147,14 +152,22 @@ function ProjectModal({ onClose, project }) {
 
                 {/* ---------- 모달 컨텐츠 영역 ---------- */}
                 <ModalContentsSection>
+                    <ProjectArticle>
                     {/* ---------- 프로젝트 설명 ---------- */}
-                    <ProjectDescSection>
+              
                         <DescArticle>
                             <h1>{ project.name }</h1>
                             <h3>{ project.subTitle }</h3>
                         </DescArticle>
 
-                        <DescArticle>
+                        {/* ---------- 프로젝트 이미지 ---------- */}
+                        <ProjectImageSection>
+                            { project.image === undefined ? <p>이미지 준비중😢</p> :  <img src={ project.image } alt={ project.alt } ></img> }
+                        </ProjectImageSection>
+
+                    </ProjectArticle>
+
+                        {/* <DescArticle>
                             <span>{ project.date }</span>
                             <span>{ project.part }</span>
                             <span>{ project.skill }</span>
@@ -162,9 +175,9 @@ function ProjectModal({ onClose, project }) {
 
                         <DescArticle>
                             <p>{ project.describtion }</p>
-                        </DescArticle>
+                        </DescArticle> */}
 
-                        <DescArticle>
+                        {/* <DescArticle>
                             <FunctionList>
                             {
                                 functionList ? functionList.map((thisFunction) => {
@@ -174,20 +187,13 @@ function ProjectModal({ onClose, project }) {
                                 }) : null
                             }
                             </FunctionList>
-                        </DescArticle>
+                        </DescArticle> */}
 
-                        <DescArticle>
+                        {/* <DescArticle>
                             <button onClick={()=>{window.open(project.src)}}>바로 보기</button>
-                        </DescArticle>
-                    </ProjectDescSection>
+                        </DescArticle> */}
+               
                         
-                    {/* ---------- 프로젝트 이미지 ---------- */}
-                    <ProjectImageSection>
-                        {
-                            project.image === undefined ? <p>이미지 준비중😢</p> :  <img src={ project.image } alt={ project.alt } ></img>
-                        }
-
-                    </ProjectImageSection>
                 </ModalContentsSection>
             </ModalSection>
         </ModalWrap>

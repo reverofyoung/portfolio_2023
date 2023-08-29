@@ -1,5 +1,6 @@
 const colors = {
-    mainColor: "#F6F4EB",
+    mainColor: "#FFF",
+    // mainColor: "#F6F4EB",
     fontColor: "#000",
     pointColor: "#CF0000",
 };
