@@ -61,26 +61,29 @@ const RightArticle = styled(LayoutArticle)`
     }
 
     button {
+        cursor: pointer;
         font-size: 16px;
         line-height: 1.5;
 
         &:hover { 
-            animation: ${menuAnimation} .9s ease infinite; 
+            animation: ${ menuAnimation } .9s ease infinite; 
             color: ${ colors.pointColor }; 
         }
     }
 `;
 
 const MoveImage = styled.div`
+
+    img {
+        transition: all .5s ease;
+    }
 `;
 
-
 function HomePage() {
-    const [xy, setXY] = useState({x:0, y:0});
+    const [xy, setXY] = useState({ x:0, y:0 });
 
     const HandleMouseMove = (e) => {
-        console.log(e);
-        setXY({x:e.clientX, y:e.clientY});
+        setXY({ x:e.clientX, y:e.clientY });
     };
 
     return(

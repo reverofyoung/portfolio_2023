@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 const MainWrap = styled.section`
     background-color: ${ colors.mainColor };
-    border: 1px solid ${ colors.fontColor };
+    /* border: 1px solid ${ colors.fontColor }; */
     color: ${ colors.fontColor };
     font-family: 'Noto Sans KR', sans-serif;
     height: 100vh;
@@ -48,7 +48,6 @@ const TitleArticle = styled.article`
 `;
 
 const AboutArticle = styled.section`
-
     display: flex;
     justify-content: space-between;
 
@@ -98,30 +97,36 @@ const AboutCon = styled.article`
         } 
     } 
     
-    @media screen and (max-width: 768px) {font-size: 16px; width: 100% };
+    @media screen and (max-width: 768px) { font-size: 16px; width: 100% };
 `;
 
 const LanguageBox = styled.div`
-margin-bottom: 10px;
+    margin-bottom: 10px;
     button { 
         margin-right: 8px;
-        text-decoration: ${ props => props.$changeBtn ? 'none' : 'underline'};
+        text-decoration: ${ props => props.$changeBtn ? 'underline' : 'none'};
 
-        /* &:focus {
+        &:focus {
             text-decoration: underline;
-        } */
+        } 
     }
 `;
 
 function AboutPage() {
-    const [englishMode, setEnglishMode] = useState(false);
+    const [enMode, setEnMode] = useState(false);
+    const [koMode, setKoMode] = useState(true);
 
     useEffect(() => {
-        setEnglishMode(false);
+        setKoMode(true);
     }, []);
     
+    const onKoreanMode = () => {
+        setEnMode(false);
+        setKoMode(true);
+    };
     const onEnglishMode = () => {
-        setEnglishMode(!englishMode);
+        setEnMode(true);
+        setKoMode(false);
     };
     
 
@@ -139,11 +144,11 @@ function AboutPage() {
                     </PersonalCon> */}
                     <AboutCon>
                         <LanguageBox>
-                            <button onClick={ onEnglishMode } $changeBtn={ englishMode }>KO</button>
-                            <button onClick={ onEnglishMode } >ENG</button>
+                            <button onClick={ onKoreanMode }>KO</button>
+                            <button onClick={ onEnglishMode }>ENG</button>
                         </LanguageBox>
                         {
-                            englishMode ? 
+                            enMode ? 
                             <div>
                                 <p>Thank you for visiting my portfolio!</p>
                                 <p>
