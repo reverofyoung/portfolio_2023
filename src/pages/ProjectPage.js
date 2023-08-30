@@ -19,7 +19,7 @@ const fadeAnimation = keyframes`
 
 const MainWrap = styled.main`
     background-color: ${ colors.mainColor };
-    border: 1px solid ${ colors.fontColor };
+    /* border: 1px solid ${ colors.fontColor }; */
     color: ${ colors.fontColor };
     font-family: 'Noto Sans', 'Noto Sans KR';
     height: 100vh;
@@ -28,7 +28,7 @@ const MainWrap = styled.main`
 `;
 
 const ProjectSection = styled.section`
-    display: flex;
+    /* display: flex; */
     height: 100%;
     width: 100%;
 
@@ -42,8 +42,8 @@ const SectionTitle = styled.article`
 
     h1 {
         font-family: 'Noto Sans KR', sans-serif;
-        font-size: 48px;
-        font-weight: 900;
+        font-size: 18px;
+        font-weight: 300;
 
         @media screen and (max-width: 768px) {
             font-size: 44px;
@@ -54,14 +54,16 @@ const SectionTitle = styled.article`
 `;
 
 const ProjectArticle = styled.article`
-    border-left: 1px solid ${ colors.fontColor };
+    /* border-left: 1px solid ${ colors.fontColor }; */
     /* border-right: 2px solid ${ colors.fontColor }; */
-    height: 100%;
+    /* height: 100%; */
+    /* background-color: beige; */
+    padding-left: 30px;
     width: 50%;
 
     @media screen and (max-width: 768px) {
-        border-top: 1px solid ${ colors.fontColor };
-        border-left:none;
+        /* border-top: 1px solid ${ colors.fontColor }; */
+        /* border-left:none; */
         flex: 1;
         width: 100%;
     };
@@ -69,13 +71,13 @@ const ProjectArticle = styled.article`
 
 const ProjectList = styled.ul`
     li {
-        border-bottom: 1px solid ${ colors.fontColor };
+        /* border-bottom: 1px solid ${ colors.fontColor }; */
         cursor: pointer;
-        padding: 20px;
+        padding: 3px;
 
         p {
-            font-size: 48px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 300;
 
             &:hover { 
                 animation: ${ fadeAnimation } .2s ease-in; 
@@ -89,19 +91,6 @@ const ProjectList = styled.ul`
         }
     }
 `;
-
-// const GuideText = styled.p`
-//     color: ${ colors.pointColor };
-//     font-size: 12px;
-//     font-weight: 300;
-//     margin: 10px;
-    
-//     a{
-//         text-decoration: underline;
-//         font-weight: 500;
-//     }
-// `;
-
 
 function ProjectPage() {
     const [selectedProject, setSelectedProject] = useState(null);
@@ -231,11 +220,30 @@ function ProjectPage() {
             <ProjectSection>
                 {/* ---------- 페이지 타이틀 ---------- */}
                 <SectionTitle>
-                    <h1>프로젝트</h1>
+                    <h1>프로젝트 / project</h1>
                 </SectionTitle>
 
-                {/* ---------- 프로젝트 목록 ---------- */}
                 <ProjectArticle>
+                    <ProjectList>
+                        {
+                            projectMenu?.map((project, index) => {
+                                const dataId = project.name;
+                                const dataNo = index + 1;
+
+                                return(
+                                    <li key={ dataId } onClick={ () => showModal(project) }>
+                                        <p>{ dataNo }. { project.name }</p>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ProjectList>
+                </ProjectArticle>
+
+
+
+                {/* ---------- 프로젝트 목록 ---------- */}
+                {/* <ProjectArticle>
                     <ProjectList>
                         {
                             projectMenu?.map((project, index) => {
@@ -250,8 +258,8 @@ function ProjectPage() {
                             })
                         }
                     </ProjectList>
+                </ProjectArticle> */}
                     {/* <GuideText>모든 소스 코드는 <a href="https://github.com/reverofyoung" target="_blank">https://github.com/reverofyoung</a>에서 보실 수 있어요!</GuideText> */}
-                </ProjectArticle>
             </ProjectSection>
 
 
