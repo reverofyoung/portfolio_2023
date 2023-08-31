@@ -161,7 +161,7 @@ function HomePage() {
             name: 'READ',
             subTitle: '독서 일기 관리 어플리케이션',
             date: '2023.04 - 2023.07',
-            part: '팀 프로젝트(2인) | 기획 95% / 개발 100% 참여 ',
+            part: '팀 프로젝트(개발 1, 디자인 1) | 기획 95% / 개발 100% 참여 ',
             skill: [
                 'HTML', 'CSS', 'React Native', 'Redux Toolkit', 'Expo'
             ],
@@ -297,7 +297,9 @@ function HomePage() {
             <MainSection>
                 <NavSection>
                     <TitleArticle>
-                        <h1><span>이윤영</span> / Yunyoung Lee</h1>
+                        <Link to="/">
+                            <h1><span>이윤영</span> / Yunyoung Lee</h1>
+                        </Link>
                     </TitleArticle>
 
                     <JopArticle>

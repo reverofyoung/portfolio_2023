@@ -11,9 +11,10 @@ const scaleAnimation = keyframes`
 const ModalWrap = styled.main`
     /* align-items: center; */
     /* background-color: rgba(0,0,0,0.7); */
+    /* border: 1px solid ${ colors.fontColor }; */
     box-sizing: border-box;
     display: flex;
-    height: 100%;
+    height: fit-content;
     justify-content: end;
     right: 40px;
     position: absolute;
@@ -92,14 +93,15 @@ const ProjectArticle = styled.article`
     button {
         background-color: ${ colors.pointColor };
         border-radius: 60px;
-        bottom: 60px;
+        bottom: 40px;
         color: ${ colors.mainColor };
         cursor: pointer;
+        font-weight: 600;
+        height: 60px;
         text-decoration: underline;
         position: absolute;
         right: 60px;
         width: 60px;
-        height: 60px;
         
         &:hover { animation: ${ scaleAnimation } .9s ease-in infinite };
 
@@ -123,9 +125,11 @@ const SkillBox = styled.div`
 `;
 
 const FunctionArticle = styled.div`
+    width: 55%;
+
     ul {
         li {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 400;
             margin-bottom: 10px;
         }
@@ -134,12 +138,29 @@ const FunctionArticle = styled.div`
 `;
 
 const ProjectImageSection = styled.section`
-    box-sizing: border-box;
-    flex: 1;
-    width: 100%;
+    width: 40%;
 
     img { width: 100%; }
 `;
+
+const LinkButton = styled.button`
+       background-color: ${ colors.pointColor };
+        border-radius: 60px;
+        bottom: 0px;
+        color: ${ colors.mainColor };
+        cursor: pointer;
+        font-weight: 600;
+        height: 60px;
+        text-decoration: underline;
+        position: absolute;
+        right: 60px;
+        width: 60px;
+        z-index: 15;
+        
+        &:hover { animation: ${ scaleAnimation } .9s ease-in infinite };
+
+        @media screen and (max-width: 768px) { font-size: 16px};
+`
 
 function ProjectModal({ onClose, project }) {
     const functionList = project.function;
@@ -168,9 +189,9 @@ function ProjectModal({ onClose, project }) {
                     <ProjectArticle>
                         <SkillBox>
                             {
-                                skillList ? skillList.map((thisResult) => {
+                                skillList ? skillList.map((skillContent) => {
                                     return(
-                                        <span key={ thisResult }>{ thisResult }</span>
+                                        <span key={ skillContent }>{ skillContent }</span>
                                     )
                                 }) : null
                             }
@@ -188,9 +209,9 @@ function ProjectModal({ onClose, project }) {
                             <FunctionArticle>
                                     <ul>
                                     {
-                                        functionList ? functionList.map((thisFunction) => {
+                                        functionList ? functionList.map((functionContent) => {
                                             return(
-                                                <li key={ thisFunction }>{ thisFunction }</li>
+                                                <li key={ functionContent }>- { functionContent }</li>
                                             )
                                         }) : null
                                     }
@@ -203,9 +224,7 @@ function ProjectModal({ onClose, project }) {
                         </div>
                     </ProjectArticle>
 
-                    <ProjectArticle>
-                        <button onClick={()=>{window.open(project.src)}}>바로 가기</button> 
-                    </ProjectArticle>  
+                 
 
                     {/* <ProjectArticle style={{ margin: '100px 0px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-around' }}>
@@ -235,6 +254,9 @@ function ProjectModal({ onClose, project }) {
                     </ProjectArticle>                    */}
                 </ModalContentsSection>
             </ModalSection>
+            <LinkButton onClick={ ()=>{ window.open(project.src) } }>
+                바로 가기
+            </LinkButton>  
         </ModalWrap>
     )
 };
