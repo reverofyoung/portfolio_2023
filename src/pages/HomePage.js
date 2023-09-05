@@ -24,6 +24,11 @@ const menuAnimation = keyframes`
   100% { letter-spacing: 0px; transform: translateX(0px); }
 `;
 
+const contentAnimation = keyframes`
+  0% { transform: translateY(30px); opacity: 0; }
+  100% {  transform: translateY(0px); opacity: 1; }
+`;
+
 const MainWrap = styled.main`
     background-color: ${ colors.mainColor };
     color: ${ colors.fontColor };
@@ -145,6 +150,8 @@ const MoveImage = styled.div`
 function HomePage() {
     const [xy, setXY] = useState({ x:0, y:0 });
     const [selectedProject, setSelectedProject] = useState(null);
+    const [contentVisible, setContentVisible] = useState(null);
+    const [contentState, setContentState] = useState(false);
 
     const HandleMouseMove = (e) => {
         setXY({ x:e.clientX, y:e.clientY });
@@ -152,7 +159,10 @@ function HomePage() {
 
     {/* ---------- 프로젝트 목록 클릭 이벤트 ---------- */}
     const showModal = (project) => {
-        setSelectedProject(project);
+        console.log(project);
+        // setSelectedProject(project);
+        setContentState(!contentState);
+        setContentVisible(project);
     };
 
     {/* ---------- 프로젝트 목록 ---------- */}
@@ -334,9 +344,13 @@ function HomePage() {
 
                 </NavSection>
 
-                <ContentSection>
-                    {/* <div>ffff</div> */}
-                </ContentSection>
+
+                {
+                    contentVisible ?  <ContentSection animation={ contentVisible }>
+                    <div>ffff</div>
+                    </ContentSection> : null
+                }
+               
             </MainSection>
 
             {/* ---------- 움직이는 이미지 ---------- */}
@@ -345,7 +359,7 @@ function HomePage() {
             </MoveImage>
 
             {/* ---------- 프로젝트 모달 ---------- */}
-            { selectedProject && ( <ProjectModal onClose={ () => setSelectedProject(null) } project={ selectedProject } animation={ fadeAnimation } duration={ '0.5s' } /> ) }
+            { selectedProject && ( <ProjectModal onClose={ () => setSelectedProject(null) } project={ selectedProject } /> ) }
 
             {/* ---------- 푸터 ---------- */}
             <FooterComp />
