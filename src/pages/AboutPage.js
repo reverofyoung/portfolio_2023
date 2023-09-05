@@ -4,6 +4,7 @@ import colors from "../common/colors";
 import FooterComp from "../component/FooterComp";
 import HomeButtonComp from "../component/HomeButtonComp";
 import { useEffect, useState } from "react";
+import "../common/style.css"
 
 const MainWrap = styled.section`
     background-color: ${ colors.mainColor };
@@ -102,34 +103,18 @@ const AboutCon = styled.article`
 
 const LanguageBox = styled.div`
     margin-bottom: 10px;
-    button { 
-        margin-right: 8px;
-        text-decoration: ${ props => props.$changeBtn ? 'underline' : 'none'};
 
-        &:focus {
-            text-decoration: underline;
-        } 
-    }
+    button { margin-right: 8px; }
 `;
 
 function AboutPage() {
     const [enMode, setEnMode] = useState(false);
-    const [koMode, setKoMode] = useState(true);
 
-    useEffect(() => {
-        setKoMode(true);
-    }, []);
-    
-    const onKoreanMode = () => {
-        setEnMode(false);
-        setKoMode(true);
-    };
-    const onEnglishMode = () => {
-        setEnMode(true);
-        setKoMode(false);
+    // 한영 전환
+    const langConvert = () => {
+        setEnMode(!enMode);
     };
     
-
     return(
         <MainWrap>
             <AboutSection>
@@ -144,8 +129,8 @@ function AboutPage() {
                     </PersonalCon> */}
                     <AboutCon>
                         <LanguageBox>
-                            <button onClick={ onKoreanMode }>KO</button>
-                            <button onClick={ onEnglishMode }>ENG</button>
+                            <button onClick={ langConvert } className={ `${ !enMode ? "underline" : ""}`}>KO</button>
+                            <button onClick={ langConvert } className={ `${ enMode ? "underline" : ""}`}>ENG</button>
                         </LanguageBox>
                         {
                             enMode ? 
