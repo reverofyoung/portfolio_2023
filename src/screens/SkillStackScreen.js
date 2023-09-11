@@ -2,8 +2,8 @@ import { useState } from "react";
 import { styled } from "styled-components";
 
 import colors from "../common/colors";
-import FooterComp from "../component/FooterComp";
-import HomeButtonComp from "../component/HomeButtonComp";
+import FooterComp from "../components/FooterComp";
+import HomeButtonComp from "../components/HomeButtonComp";
 
 import { BiLogoHtml5 } from "react-icons/bi";
 import { BiLogoCss3 } from "react-icons/bi";
@@ -12,12 +12,16 @@ import { BiLogoReact } from "react-icons/bi";
 import { BiLogoRedux } from "react-icons/bi";
 
 const MainWrap = styled.main`
-    background-color: ${ colors.mainColor };
     color: ${ colors.fontColor };
-    font-family: 'Noto Sans KR', sans-serif;
-    height: 100vh;
+    font-family: 'Pretendard-Regular';
+    height: 100%;
     padding: 20px;
     width: 100%;
+
+    ::selection {
+        background-color: #16FF00;
+        color: black;
+    }
     
     @media screen and (max-width: 768px) {
         height: 100%;
@@ -27,12 +31,12 @@ const MainWrap = styled.main`
 const SectionTitle = styled.article`
     height: fit-content;
     margin-bottom: 70px;
-    width: 50%;
+    width: 100%;
+    
 
     h1 {
-        font-family: 'Noto Sans KR', sans-serif;
-        font-size: 48px;
-        font-weight: 900;
+        font-size: 24px;
+        font-weight: bold;
 
         @media screen and (max-width: 768px) {
             font-size: 44px;
@@ -47,11 +51,10 @@ const SectionTitle = styled.article`
 `;
 
 const SkillSection = styled.section`
-    /* border: 1px solid ${ colors.fontColor }; */
-    display: flex;
-    flex: 1;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    cursor: grab;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
     width: 100%;
 
     @media screen and (max-width: 768px) {
@@ -62,16 +65,14 @@ const SkillSection = styled.section`
 `;
 
 const SkillWrap = styled.article`
-    /* background-color: #EFEBD7; */
     border: 1px solid ${ colors.fontColor };
-    /* border-radius: 15px; */
-    display: flex;
-    flex-direction: column;
     height: 100%;
     padding: 20px;
-    margin-bottom: 30px;
-    /* width: 25%; */
-    width: 300px;
+
+    &:hover {
+        border-radius: 40px;
+        transition: all .5s linear;
+    }
 
     @media screen and (max-width: 768px) {
         margin-bottom: 20px;
@@ -84,7 +85,7 @@ const SkillName = styled.div`
     align-items: center;
     color: ${ colors.fontColor };
     display: flex;
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Pretendard-Regular';
     font-size: 18px;
     font-weight: 300;
     margin-bottom: 60px;
@@ -101,7 +102,7 @@ const SkillName = styled.div`
 `;
 
 const SkillDesc = styled.div`
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard-Regular';
     font-size: 13px;
     justify-content: flex-end;
 
@@ -111,7 +112,7 @@ const SkillDesc = styled.div`
     }
 `;
 
-function SkillStackPage () {
+function SkillStackScreen () {
 
     return(
         <MainWrap>
@@ -184,10 +185,10 @@ function SkillStackPage () {
                         </SkillDesc>
                     </SkillWrap>
                 </SkillSection>
-            <HomeButtonComp />
-            <FooterComp />
+            {/* <HomeButtonComp />
+            <FooterComp /> */}
         </MainWrap>
     )
 };
 
-export default SkillStackPage;
+export default SkillStackScreen;

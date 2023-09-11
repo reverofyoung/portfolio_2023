@@ -1,6 +1,6 @@
 import { keyframes, styled } from "styled-components";
 import colors from "../common/colors";
-// import { PiXLight } from 'react-icons/pi'; 
+import { PiXLight } from 'react-icons/pi'; 
 
 const scaleAnimation = keyframes`
   0% { transform: scale(1) } 
@@ -10,6 +10,7 @@ const scaleAnimation = keyframes`
 
 const ModalWrap = styled.main`
     height: 100%;
+    padding: 20px;
     width: 100%;
 `;
 
@@ -19,28 +20,40 @@ const ModalSection = styled.section`
     height: 100%;
     width: 100%;
 
-    @media screen and (max-width: 768px) { padding: 20px; width: 100%; };
+    @media screen and (max-width: 768px) { 
+        padding: 20px; 
+        width: 100%; 
+    };
 `;
 
-// const ModalButtonSection = styled.section`
-//     position: relative;
-//     margin-bottom: 20px;
-//     width: 100%;
+const ModalButtonSection = styled.section`
+    display: none;
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
 
-//     @media screen and (max-width: 768px) {  margin-bottom: 0px; };
-// `;
+    @media screen and (max-width: 768px) {  
+        display: block;
+    };
+`;
 
-// const CloseButton = styled.button`
-//     color: ${ colors.fontColor };
-//     font-size: 18px;
-//     float: right;
+const CloseButton = styled.button`
+    color: ${ colors.fontColor };
+    font-size: 18px;
+    float: right;
 
-//     &:hover { color: ${ colors.pointColor }; }
-// `;  
+    &:hover { color: ${ colors.pointColor }; }
+`;  
 
 const ModalContentsSection = styled.section`
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     padding-right: 30px;
+
+    @media screen and (max-width: 768px) {  
+        overflow-y: scroll;
+        padding: 0px;
+    };
+
 `;
 
 const ProjectArticle = styled.article`
@@ -48,30 +61,37 @@ const ProjectArticle = styled.article`
 
     h1 {
         font-size: 24px;
-        font-weight: 600;
+        font-weight: bold;
         margin-bottom: 10px;
     };
 
     h2 {
         font-size: 15px;
-        font-weight: 100;
+        font-weight: light;
+
+        @media screen and (max-width: 768px) { 
+            margin-bottom: 16px;
+        };
     };
 
     h3 {
         font-size: 15px;
-        font-weight: 500;
+        font-weight: bold;
         margin-bottom: 20px;
     }
 
     p {
-        font-family: 'Noto Sans KR', 'Noto Sans ';
+        font-family: 'Pretendard-Regular';
         font-size: 13px;
-        font-weight: 400;
+        font-weight: lighter;
         line-height: 1.4;
         margin-bottom: 5px;
         text-align: right;
 
-        @media screen and (max-width: 768px) { font-size: 16px; };
+        @media screen and (max-width: 768px) { 
+            font-size: 14px; 
+            text-align: left;
+        };
     };
 
     button {
@@ -106,6 +126,10 @@ const SkillBox = styled.div`
         margin-right: 5px;
         padding: 6px 10px;
     }
+
+    @media screen and (max-width: 768px) { 
+        margin-top: 30px;
+    };
 `;
 
 const FunctionArticle = styled.div`
@@ -133,7 +157,7 @@ const LinkButton = styled.button`
         bottom: 0px;
         color: ${ colors.mainColor };
         cursor: pointer;
-        font-weight: 600;
+        font-weight: bold;
         height: 60px;
         text-decoration: underline;
         position: absolute;
@@ -143,10 +167,13 @@ const LinkButton = styled.button`
         
         &:hover { animation: ${ scaleAnimation } .9s ease-in infinite };
 
-        @media screen and (max-width: 768px) { font-size: 16px};
+        @media screen and (max-width: 768px) { 
+            font-size: 11px;
+            right: 40px;
+        };
 `
 
-function ProjectComp({ onClose, project }) {
+function ProjectScreen({ onClose, project }) {
     const functionList = project.function;
     const skillList = project.skill;
 
@@ -154,9 +181,9 @@ function ProjectComp({ onClose, project }) {
         <ModalWrap>
             <ModalSection>
                 {/* ---------- 모달 버튼 영역 ---------- */}
-                {/* <ModalButtonSection>
+                <ModalButtonSection>
                     <CloseButton onClick={ onClose }><PiXLight size={ 22 } /></CloseButton>
-                </ModalButtonSection> */}
+                </ModalButtonSection>
 
                 {/* ---------- 모달 컨텐츠 영역 ---------- */}
                 <ModalContentsSection>
@@ -216,4 +243,4 @@ function ProjectComp({ onClose, project }) {
     )
 };
 
-export default ProjectComp;
+export default ProjectScreen;

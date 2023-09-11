@@ -3,10 +3,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import colors from "../common/colors";
-// import ProjectModalTest from "../component/ProjectComp";
-// import ProjectModal from "../component/ProjectModal";
-import ProjectComp from "../component/ProjectComp";
-import FooterComp from "../component/FooterComp";
+
+import InfoScreen from "../screens/InfoScreen";
+import SkillStackScreen from "../screens/SkillStackScreen";
+import ProjectScreen from "../screens/ProjectScreen";
+
+import FooterComp from "../components/FooterComp";
 
 import MainImg from "../image/MainImg.png";
 import portfolio from "../image/portfolio.png"
@@ -44,9 +46,9 @@ const MainWrap = styled.main`
     font-family: 'Pretendard-Regular';
     overflow: hidden;
     width: 100vw;
+
     ::selection {
         background-color: #16FF00;
-        /* background-color: ${ colors.pointColor }; */
         color: black;
     }
 `;
@@ -55,6 +57,7 @@ const MainSection = styled.section`
     justify-content: space-between;
     display: flex;
     height: 100%;
+    overflow: hidden;
     padding: 40px;
     position: relative; 
     width: 100%;
@@ -64,12 +67,25 @@ const NavSection = styled.section`
     height: 100%;
     width: 25%;
     z-index: 10;
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    };
 `;
 
 const ContentSection = styled.section`
     height: 100%;
-    width: 80%;
+    overflow: hidden;
+    width: 75%;
     z-index: 10;
+
+    @media screen and (max-width: 768px) {
+        background-color: ${ colors.mainColor };
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    };
 `;
 
 const TitleArticle = styled.article`
@@ -117,7 +133,7 @@ const ProjectMenuArticle = styled.article`
 
     h3 { 
         font-size: 16px;
-        font-weight: 500;
+        font-weight: bold;
     }
     
 `;
@@ -140,8 +156,7 @@ const ProjectList = styled.ul`
             }
 
             @media screen and (max-width: 768px) {
-                font-size: 24px;  
-                line-height: 1.3;
+                font-size: 14px;  
             };
         }
     }
@@ -174,20 +189,36 @@ const MoveImage = styled.div`
 
 function HomePage() {
     const [xy, setXY] = useState({ x: 0, y: 0 });
-    // const [selectedProject, setSelectedProject] = useState(null);
     const [projectData, setProjectData] = useState(null);
-    const [contentState, setContentState] = useState(false);
+    const [infoState, setInfoState] = useState(false);
+    const [skillState, setSkillState] = useState(false);
+    const [projectState, setProjectState ] = useState(false);
+    
 
     const HandleMouseMove = (e) => {
         setXY({ x:e.clientX, y:e.clientY });
     };
+    
+    {/* ---------- 스킬 메뉴 클릭 이벤트 ---------- */}
+    const showSkill = () => {
+        setProjectData(null);
+        setInfoState(false);
+        setSkillState(true);
+    };
 
+    {/* ---------- 소개 메뉴 클릭 이벤트 ---------- */}
+      const showInfo = () => {
+        setSkillState(false);
+        setProjectData(null)
+        setInfoState(true);
+    };
+    
     {/* ---------- 프로젝트 목록 클릭 이벤트 ---------- */}
-    const showModal = (project) => {
-        // setSelectedProject(project);
+    const showProject = (project) => {
         setProjectData(project);
-        setContentState(true);
-        console.log(contentState);
+        setSkillState(false);
+        setInfoState(false);
+        setProjectState(true);
     };
 
     {/* ---------- 프로젝트 목록 ---------- */}
@@ -330,7 +361,7 @@ function HomePage() {
                 <NavSection>
                     <TitleArticle>
                         <Link to="/">
-                            <h1>이윤영/ Yunyoung Lee</h1>
+                            <h1>이윤영/ YUNYOUNG LEE</h1>
                         </Link>
                     </TitleArticle>
 
@@ -340,8 +371,10 @@ function HomePage() {
                     </JopArticle>
 
                     <MenuArticle>
-                        <Link to="/skillStack"><button>기술 스택 / skill stack</button></Link>
-                        <Link to="/about"><button>소개 / info</button></Link>
+                        <button onClick={ showSkill }>기술 스택 / skill stack</button>
+                        <button onClick={ showInfo }>소개 / info</button>
+                        {/* <Link to="/skillStack"><button>기술 스택 / skill stack</button></Link>
+                        <Link to="/about"><button>소개 / info</button></Link> */}
                     </MenuArticle>
 
                     <ProjectMenuArticle>
@@ -354,7 +387,7 @@ function HomePage() {
                                         const dataNo = index + 1;
 
                                         return(
-                                            <li key={ dataId } onClick={ () => showModal(project) }>
+                                            <li key={ dataId } onClick={ () => showProject(project) }>
                                                 <p>{ dataNo }. { project.name }</p>
                                             </li>
                                         )
@@ -365,18 +398,46 @@ function HomePage() {
                     </ProjectMenuArticle>
 
                 </NavSection>
+                
+                <ContentSection>
+                    {
+                        infoState  === true ?  <InfoScreen /> 
+                        : skillState === true ? <SkillStackScreen /> 
+                        : projectData &&  
+                        <>
+                            <ProjectScreen project={ projectData } onClose={ () => setProjectData(null) } />
+                            <LinkButton onClick={ ()=>{ window.open(projectData.src) } }>바로 가기</LinkButton>  
+                        </>
+                    }
+                </ContentSection>
+                {/* 소개 컴포넌트 */}
+                {/* {
+                    infoState &&
+                    <ContentSection>
+                        <InfoScreen />
+                    </ContentSection>
+                } */}
 
+                {/* 기술 스택 컴포넌트 */}
+                {/* {
+                    skillState &&
+                    <ContentSection>
+                        <SkillStackScreen />
+                    </ContentSection>
+                } */}
+
+
+                {/* 프로젝트 컴포넌트 */}
                 {
-                    projectData &&
-                    <ContentSection className={ `${ contentState ? "content-show" : "content-hide" }` }>
-                        <ProjectComp project={ projectData }/>
+                    // projectData &&
+                    // <ContentSection className={ `${ projectState ? "content-show" : "" }` }>
+                    //     <ProjectScreen project={ projectData } onClose={ () => setProjectData(null) } />
 
-                        <LinkButton onClick={ ()=>{ window.open(projectData.src) } }>
-                            바로 가기
-                        </LinkButton>  
-                    </ContentSection> 
+                    //     <LinkButton onClick={ ()=>{ window.open(projectData.src) } } >
+                    //         바로 가기
+                    //     </LinkButton>  
+                    // </ContentSection> 
                 }
-               
             </MainSection>
 
             {/* ---------- 움직이는 이미지 ---------- */}

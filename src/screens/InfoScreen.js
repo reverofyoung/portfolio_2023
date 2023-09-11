@@ -1,10 +1,12 @@
+import { useEffect, useState } from "react";
 import { keyframes, styled } from "styled-components";
 
-import colors from "../common/colors";
-import FooterComp from "../component/FooterComp";
-import HomeButtonComp from "../component/HomeButtonComp";
-import { useEffect, useState } from "react";
 import "../common/style.css"
+import colors from "../common/colors";
+
+import FooterComp from "../components/FooterComp";
+import HomeButtonComp from "../components/HomeButtonComp";
+
 
 const MainWrap = styled.section`
     background-color: ${ colors.mainColor };
@@ -107,7 +109,7 @@ const LanguageBox = styled.div`
     button { margin-right: 8px; }
 `;
 
-function AboutPage() {
+function InfoScreen() {
     const [enMode, setEnMode] = useState(false);
 
     // 한영 전환
@@ -163,4 +165,4 @@ function AboutPage() {
     )
 };
 
-export default AboutPage;
+export default InfoScreen;
