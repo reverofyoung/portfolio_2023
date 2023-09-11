@@ -11,6 +11,7 @@ import portfolio from "../image/portfolio.png"
 import dashboard from "../image/dashboard.png"
 import freitag from "../image/freitag.png"
 import chamkit from "../image/chamkit.png"
+import ProjectModalTest from "../component/ProjectModalTest";
 
 const fadeAnimation = keyframes`
   0% { opacity: 1; }
@@ -18,30 +19,42 @@ const fadeAnimation = keyframes`
   100% { opacity: 1; }
 `;
 
-const menuAnimation = keyframes`
+const textAnimation = keyframes`
   0% { letter-spacing: 0px; transform: translateX(5px); }
   50%{ letter-spacing: 2px; }
   100% { letter-spacing: 0px; transform: translateX(0px); }
 `;
 
-const contentAnimation = keyframes`
-  0% { transform: translateY(30px); opacity: 0; }
-  100% {  transform: translateY(0px); opacity: 1; }
+const scaleAnimation = keyframes`
+  0% { transform: scale(1); } 
+  5% { transform: scale(1.2); } 
+  100% { transform: scale(1); }
+`;
+
+const spinAnimation = keyframes`
+    0% { transform: rotateX(0deg); }
+    100% { transform: rotateX(360deg); }
 `;
 
 const MainWrap = styled.main`
     background-color: ${ colors.mainColor };
     color: ${ colors.fontColor };
     height: 100vh;
-    font-family: 'Noto Sans', 'Noto Sans KR';
+    font-family: 'Pretendard-Regular';
     overflow: hidden;
     width: 100vw;
+    ::selection {
+        background-color: #16FF00;
+        /* background-color: ${ colors.pointColor }; */
+        color: black;
+    }
+    
 `;
 
 const MainSection = styled.section`
     justify-content: space-between;
     display: flex;
-    /* height: 100%; */
+    height: 100%;
     padding: 40px;
     position: relative; 
     width: 100%;
@@ -54,21 +67,18 @@ const NavSection = styled.section`
 `;
 
 const ContentSection = styled.section`
-    background-color: yellow;
     height: 100%;
-    /* overflow: scroll; */
-    width: 75%;
+    width: 80%;
     z-index: 10;
 `;
 
 const TitleArticle = styled.article`
     h1 {
-        font-size: 16px;
+        font-size: 16px;     
 
-        ::selection {
-            background-color: ${ colors.pointColor };
-            color: white;
-        }
+        &:hover {   
+            animation: ${ spinAnimation } 3s linear infinite;
+        } 
     }
 `;
 
@@ -81,27 +91,22 @@ const JopArticle = styled.article`
 
     p {
         font-size: 16px;
-        line-height: 1.5;
-        /* text-align: center; */
-        
+        line-height: 1.5; 
     }
+
     span {
         background-color: black;
         color: white;
-
-        ::selection {
-            background-color: white;
-            color: black;
-        }
     }
 `;
 
 const MenuArticle = styled.article`
     button {
         cursor: pointer; 
+        display: block;
 
         &:hover { 
-            animation: ${ menuAnimation } .9s ease infinite; 
+            animation: ${ textAnimation } .9s ease infinite; 
             color: ${ colors.pointColor }; 
         }
     }
@@ -114,6 +119,7 @@ const ProjectMenuArticle = styled.article`
         font-size: 16px;
         font-weight: 500;
     }
+    
 `;
 
 const ProjectList = styled.ul`
@@ -124,9 +130,9 @@ const ProjectList = styled.ul`
         cursor: pointer;
         padding: 3px;
 
+       
         p {
             font-size: 14px;
-            /* font-weight: 300; */
 
             &:hover { 
                 animation: ${ fadeAnimation } .2s ease-in; 
@@ -141,16 +147,35 @@ const ProjectList = styled.ul`
     }
 `;
 
+const LinkButton = styled.button`
+    background-color: ${ colors.pointColor };
+    border-radius: 60px;
+    bottom: 80px;
+    color: ${ colors.mainColor };
+    cursor: pointer;
+    font-weight: 600;
+    height: 60px;
+    text-decoration: underline;
+    position: absolute;
+    right: 70px;
+    width: 60px;
+    z-index: 15;
+    
+    &:hover { animation: ${ scaleAnimation } .9s ease-in infinite };
+
+    @media screen and (max-width: 768px) { font-size: 16px};
+`;
+
 const MoveImage = styled.div`
     img {
-        transition: all .5s ease;
+        transition: all .7s linear;
     }
 `;
 
 function HomePage() {
-    const [xy, setXY] = useState({ x:0, y:0 });
-    const [selectedProject, setSelectedProject] = useState(null);
-    const [contentVisible, setContentVisible] = useState(null);
+    const [xy, setXY] = useState({ x: 0, y: 0 });
+    // const [selectedProject, setSelectedProject] = useState(null);
+    const [projectData, setProjectData] = useState(null);
     const [contentState, setContentState] = useState(false);
 
     const HandleMouseMove = (e) => {
@@ -159,10 +184,10 @@ function HomePage() {
 
     {/* ---------- 프로젝트 목록 클릭 이벤트 ---------- */}
     const showModal = (project) => {
-        console.log(project);
         // setSelectedProject(project);
-        setContentState(!contentState);
-        setContentVisible(project);
+        setProjectData(project);
+        setContentState(true);
+        console.log(contentState);
     };
 
     {/* ---------- 프로젝트 목록 ---------- */}
@@ -308,7 +333,7 @@ function HomePage() {
                 <NavSection>
                     <TitleArticle>
                         <Link to="/">
-                            <h1><span>이윤영</span> / Yunyoung Lee</h1>
+                            <h1>이윤영/ Yunyoung Lee</h1>
                         </Link>
                     </TitleArticle>
 
@@ -318,8 +343,11 @@ function HomePage() {
                     </JopArticle>
 
                     <MenuArticle>
-                        <div><Link to="/skillStack"><button>기술 스택 / skill stack</button></Link></div>
-                        <div><Link to="/about"><button>소개 / info</button></Link></div>
+              
+                            <Link to="/skillStack"><button>기술 스택 / skill stack</button></Link>
+                        
+                            <Link to="/about"><button>소개 / info</button></Link>
+                  
                     </MenuArticle>
 
                     <ProjectMenuArticle>
@@ -344,11 +372,15 @@ function HomePage() {
 
                 </NavSection>
 
-
                 {
-                    contentVisible ?  <ContentSection animation={ contentVisible }>
-                    <div>ffff</div>
-                    </ContentSection> : null
+                    projectData &&
+                    <ContentSection className={`${ contentState ? "content-show" : "content-hide" }`}>
+                        <ProjectModalTest project={ projectData }/>
+
+                        <LinkButton onClick={ ()=>{ window.open(projectData.src) } }>
+                            바로 가기
+                        </LinkButton>  
+                    </ContentSection> 
                 }
                
             </MainSection>
@@ -359,7 +391,7 @@ function HomePage() {
             </MoveImage>
 
             {/* ---------- 프로젝트 모달 ---------- */}
-            { selectedProject && ( <ProjectModal onClose={ () => setSelectedProject(null) } project={ selectedProject } /> ) }
+            {/* { selectedProject && ( <ProjectModal onClose={ () => setSelectedProject(null) } project={ selectedProject } /> ) } */}
 
             {/* ---------- 푸터 ---------- */}
             <FooterComp />

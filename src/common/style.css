@@ -1,16 +1,35 @@
-@keyframes contentAni {
+
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@keyframes contentAnimation {
     from {
-      margin-left: 100%;
-      width: 300%;
+        opacity: 0;
+        transform: translateY(30px);
     }
   
     to {
-      margin-left: 0%;
-      width: 100%;
+        opacity: 1;
+        transform: translateY(0px);
     }
   }
 
 .underline {
     text-decoration: underline;
   }
+
+.content-hide {
+  opacity: 0;
+}
+  
+.content-show {
+    /* opacity: 1;
+    transition: all .4s ease-in-out; */
+    animation: contentAnimation .4s ease-in-out;
+}
   
