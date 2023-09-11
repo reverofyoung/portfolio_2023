@@ -146,7 +146,7 @@ const LinkButton = styled.button`
         @media screen and (max-width: 768px) { font-size: 16px};
 `
 
-function ProjectModalTest({ onClose, project }) {
+function ProjectComp({ onClose, project }) {
     const functionList = project.function;
     const skillList = project.skill;
 
@@ -216,4 +216,4 @@ function ProjectModalTest({ onClose, project }) {
     )
 };
 
-export default ProjectModalTest;
+export default ProjectComp;

@@ -3,7 +3,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import colors from "../common/colors";
-import ProjectModal from "../component/ProjectModal";
+// import ProjectModal from "../component/ProjectModal";
+// import ProjectModalTest from "../component/ProjectComp";
+import ProjectComp from "../component/ProjectComp";
 import FooterComp from "../component/FooterComp";
 
 import MainImg from "../image/MainImg.png";
@@ -11,7 +13,6 @@ import portfolio from "../image/portfolio.png"
 import dashboard from "../image/dashboard.png"
 import freitag from "../image/freitag.png"
 import chamkit from "../image/chamkit.png"
-import ProjectModalTest from "../component/ProjectModalTest";
 
 const fadeAnimation = keyframes`
   0% { opacity: 1; }
@@ -375,7 +376,7 @@ function HomePage() {
                 {
                     projectData &&
                     <ContentSection className={`${ contentState ? "content-show" : "content-hide" }`}>
-                        <ProjectModalTest project={ projectData }/>
+                        <ProjectComp project={ projectData }/>
 
                         <LinkButton onClick={ ()=>{ window.open(projectData.src) } }>
                             바로 가기
