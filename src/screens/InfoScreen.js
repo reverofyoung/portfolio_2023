@@ -9,7 +9,7 @@ import HomeButtonComp from "../components/HomeButtonComp";
 
 
 const MainWrap = styled.section`
-    background-color: ${ colors.mainColor };
+    /* background-color: ${ colors.mainColor }; */
     /* border: 1px solid ${ colors.fontColor }; */
     color: ${ colors.fontColor };
     font-family: 'Noto Sans KR', sans-serif;
@@ -22,8 +22,7 @@ const MainWrap = styled.section`
     };
 `;
 
-
-const AboutSection = styled.section`
+const InfoSection = styled.section`
     padding: 20px;
 
     @media screen and (max-width: 768px) {
@@ -50,7 +49,8 @@ const TitleArticle = styled.article`
     @media screen and (max-width: 768px) { width: 100%; };
 `;
 
-const AboutArticle = styled.section`
+const ContentArticle = styled.section`
+background-color: aqua;
     display: flex;
     justify-content: space-between;
 
@@ -61,7 +61,6 @@ const AboutArticle = styled.section`
 `;
 
 const PersonalCon = styled.div`
-
     margin-bottom: 30px;
     width: 50%;
 
@@ -76,9 +75,8 @@ const PersonalCon = styled.div`
     @media screen and (max-width: 768px) { width: 100%; };
 `;
 
-const AboutCon = styled.article`
-    /* background-color: lightcoral; */
-    width: 32%;
+const InfoArticle = styled.article`
+    width: 50%;
 
     div {
         margin-right: 30px;
@@ -119,17 +117,17 @@ function InfoScreen() {
     
     return(
         <MainWrap>
-            <AboutSection>
+            <InfoSection>
                 <TitleArticle>
                     <h1>이윤영</h1>
                 </TitleArticle>
 
-                <AboutArticle>
+                <ContentArticle>
                     {/* <PersonalCon>
                         <p>2019.02 계원예술대학교 디지털미디어디자인과 졸업</p>
                         <p>2021.07 - 2022.09 IT 스타트업 '디케이랩' 프론트엔드 개발팀 근무</p>
                     </PersonalCon> */}
-                    <AboutCon>
+                    <InfoArticle>
                         <LanguageBox>
                             <button onClick={ langConvert } className={ `${ !enMode ? "underline" : ""}`}>KO</button>
                             <button onClick={ langConvert } className={ `${ enMode ? "underline" : ""}`}>ENG</button>
@@ -155,9 +153,9 @@ function InfoScreen() {
                             </div> 
                         }
                        
-                    </AboutCon>
-                </AboutArticle>
-            </AboutSection>
+                    </InfoArticle>
+                </ContentArticle>
+            </InfoSection>
 
             <HomeButtonComp />
             <FooterComp />
