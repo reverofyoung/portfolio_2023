@@ -4,16 +4,11 @@ import { keyframes, styled } from "styled-components";
 import "../common/style.css"
 import colors from "../common/colors";
 
-import FooterComp from "../components/FooterComp";
-import HomeButtonComp from "../components/HomeButtonComp";
-
+import { PiXLight } from 'react-icons/pi'; 
 
 const MainWrap = styled.section`
-    /* background-color: ${ colors.mainColor }; */
-    /* border: 1px solid ${ colors.fontColor }; */
-    color: ${ colors.fontColor };
-    font-family: 'Noto Sans KR', sans-serif;
-    height: 100vh;
+    height: 100%;
+    padding: 20px;
     width: 100%;
 
     @media screen and (max-width: 768px) { 
@@ -23,25 +18,44 @@ const MainWrap = styled.section`
 `;
 
 const InfoSection = styled.section`
-    padding: 20px;
+    font-family: 'Pretendard-Regular';
+
 
     @media screen and (max-width: 768px) {
         padding: 20px;
     };
 `;
+const CloseButtonSection = styled.section`
+    display: none;
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
 
-const TitleArticle = styled.article`
+    @media screen and (max-width: 768px) {  
+        display: block;
+    };
+`;
+
+const CloseButton = styled.button`
+    color: ${ colors.fontColor };
+    font-size: 18px;
+    float: right;
+
+    &:hover { color: ${ colors.pointColor }; }
+`; 
+
+const SectionTitle = styled.article`
     height: fit-content;
-    margin-bottom: 40px;
+    margin-bottom: 70px;
     width: 100%;
 
     h1 {
-        font-family: 'Noto Sans KR', sans-serif;
-        font-size: 30px;
-        font-weight: 900;
+        font-family: 'Pretendard-Regular';
+        font-size: 24px;
+        font-weight: bold;
 
         @media screen and (max-width: 768px) {
-            font-size: 45px;
+            font-size: 24px;
             margin-bottom: 60px;
         };
     }  
@@ -49,8 +63,7 @@ const TitleArticle = styled.article`
     @media screen and (max-width: 768px) { width: 100%; };
 `;
 
-const ContentArticle = styled.section`
-background-color: aqua;
+const ContentSection = styled.section`
     display: flex;
     justify-content: space-between;
 
@@ -77,26 +90,21 @@ const PersonalCon = styled.div`
 
 const InfoArticle = styled.article`
     width: 50%;
-
-    div {
-        margin-right: 30px;
-        width: 100%;
-    }
-
-    p {
-        line-height: 1.5;
-        font-size: 14px;
-        font-weight: 400;
-
         a { 
-            color: ${ colors.pointColor };
             cursor: pointer;
-            text-decoration: underline;
+            display: flex;
+            line-height: 1.5;
+            font-size: 22px;
+            font-weight: lighter;
 
             &:hover { color: ${ colors.pointColor }; }
             &:active { color: ${ colors.pointColor }; }
+
+            span {
+                align-items: center;
+                display: flex;
+            }
         } 
-    } 
     
     @media screen and (max-width: 768px) { font-size: 16px; width: 100% };
 `;
@@ -107,7 +115,7 @@ const LanguageBox = styled.div`
     button { margin-right: 8px; }
 `;
 
-function InfoScreen() {
+function InfoScreen({ onClose }) {
     const [enMode, setEnMode] = useState(false);
 
     // 한영 전환
@@ -118,16 +126,24 @@ function InfoScreen() {
     return(
         <MainWrap>
             <InfoSection>
-                <TitleArticle>
-                    <h1>이윤영</h1>
-                </TitleArticle>
+                <CloseButtonSection>
+                    <CloseButton onClick={ onClose }><PiXLight size={ 22 } /></CloseButton>
+                </CloseButtonSection>
 
-                <ContentArticle>
+                <SectionTitle>
+                    <h1>소개</h1>
+                </SectionTitle>
+
+                <ContentSection>
                     {/* <PersonalCon>
                         <p>2019.02 계원예술대학교 디지털미디어디자인과 졸업</p>
                         <p>2021.07 - 2022.09 IT 스타트업 '디케이랩' 프론트엔드 개발팀 근무</p>
                     </PersonalCon> */}
                     <InfoArticle>
+                      
+                    </InfoArticle>
+
+                    {/* <InfoArticle>
                         <LanguageBox>
                             <button onClick={ langConvert } className={ `${ !enMode ? "underline" : ""}`}>KO</button>
                             <button onClick={ langConvert } className={ `${ enMode ? "underline" : ""}`}>ENG</button>
@@ -153,12 +169,9 @@ function InfoScreen() {
                             </div> 
                         }
                        
-                    </InfoArticle>
-                </ContentArticle>
+                    </InfoArticle> */}
+                </ContentSection>
             </InfoSection>
-
-            <HomeButtonComp />
-            <FooterComp />
         </MainWrap>
     )
 };

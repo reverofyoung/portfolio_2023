@@ -1,6 +1,10 @@
 import styled, { keyframes } from "styled-components"
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { IoCodeOutline } from "react-icons/io5";
+import { IoCodeSlash } from "react-icons/io5";
+import { IoArrowForwardSharp } from "react-icons/io5";
+import { MdAlternateEmail } from "react-icons/md";
 
 import colors from "../common/colors";
 
@@ -30,13 +34,23 @@ const textAnimation = keyframes`
 
 const scaleAnimation = keyframes`
   0% { transform: scale(1); } 
-  5% { transform: scale(1.2); } 
+  50% { transform: scale(1.2); } 
   100% { transform: scale(1); }
 `;
 
-const spinAnimation = keyframes`
+const titleSpinAni = keyframes`
     0% { transform: rotateX(0deg); }
     100% { transform: rotateX(360deg); }
+`;
+
+const iconTranslateAni = keyframes`
+    0% { transform: translateX(0px); }
+    100% { transform: translateX(8px); }
+`;
+
+const iconSpinAni = keyframes`
+    0% { transform: rotateZ(0deg); }
+    100% { transform: rotateZ(360deg); }
 `;
 
 const MainWrap = styled.main`
@@ -51,20 +65,31 @@ const MainWrap = styled.main`
         background-color: #16FF00;
         color: black;
     }
+
+    @media screen and (max-width: 768px) {
+        overflow-y: scroll;
+    };
 `;
 
 const MainSection = styled.section`
     justify-content: space-between;
     display: flex;
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
     padding: 40px;
     position: relative; 
     width: 100%;
+
+     @media screen and (max-width: 768px) {
+        flex-direction: column;
+    };
 `;
 
-const NavSection = styled.section`
+const SideSection = styled.section`
+    display: flex;
+    flex-direction: column;
     height: 100%;
+    justify-content: space-between;
     width: 25%;
     z-index: 10;
 
@@ -73,28 +98,17 @@ const NavSection = styled.section`
     };
 `;
 
-const ContentSection = styled.section`
-    height: 100%;
-    overflow: hidden;
-    width: 75%;
-    z-index: 10;
-
-    @media screen and (max-width: 768px) {
-        background-color: ${ colors.mainColor };
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-    };
+const NavArticle = styled.article`
+    width: 100%;
 `;
 
 const TitleArticle = styled.article`
+    &:hover {   
+        animation: ${ titleSpinAni } 1.2s linear infinite;
+    } 
+    
     h1 {
         font-size: 16px;     
-
-        &:hover {   
-            animation: ${ spinAnimation } 3s linear infinite;
-        } 
     }
 `;
 
@@ -116,6 +130,46 @@ const JopArticle = styled.article`
     }
 `;
 
+const AccountArticle = styled.article`
+    cursor: pointer;
+    height: fit-content;
+    width: 100%;
+
+    div:nth-child(2) { 
+        span {
+            animation: ${ iconTranslateAni } 0.8s linear infinite;
+        }
+    }
+
+    div:nth-child(3) { 
+        span {
+            animation: ${ iconSpinAni } 1.5s linear infinite;
+        }
+    }
+
+    div {
+        display: flex;
+
+        &:hover { 
+            color: ${ colors.pointColor };
+            transition: all .3s linear;
+        }
+
+        a{
+            display: flex;
+            line-height: 1.5;
+            font-size: 13px;
+            font-weight: lighter;
+        }
+
+        span {
+            align-items: center;
+            display: flex; 
+            margin-left: 5px;
+        }
+    }
+`;
+
 const MenuArticle = styled.article`
     button {
         cursor: pointer; 
@@ -132,7 +186,7 @@ const ProjectMenuArticle = styled.article`
     margin-top: 60px;
 
     h3 { 
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
     }
     
@@ -146,12 +200,11 @@ const ProjectList = styled.ul`
         cursor: pointer;
         padding: 3px;
 
-       
         p {
-            font-size: 14px;
+            font-size: 12px;
 
             &:hover { 
-                animation: ${ fadeAnimation } .2s ease-in; 
+                animation: ${ fadeAnimation } .2s step-end; 
                 color: ${ colors.pointColor }; 
             }
 
@@ -160,6 +213,20 @@ const ProjectList = styled.ul`
             };
         }
     }
+`;
+
+const ContentSection = styled.section`
+    height: 100%;
+    width: 75%;
+    z-index: 10;
+
+    @media screen and (max-width: 768px) {
+        background-color: ${ colors.mainColor };
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    };
 `;
 
 const LinkButton = styled.button`
@@ -178,12 +245,13 @@ const LinkButton = styled.button`
     
     &:hover { animation: ${ scaleAnimation } .9s ease-in infinite };
 
-    @media screen and (max-width: 768px) { font-size: 16px};
+    @media screen and (max-width: 768px) { font-size: 14px};
 `;
 
 const MoveImage = styled.div`
     img {
         transition: all .7s linear;
+        width: 150px;
     }
 `;
 
@@ -358,85 +426,79 @@ function HomePage() {
     return(
         <MainWrap onMouseMove={ (e) => HandleMouseMove(e) }>
             <MainSection>
-                <NavSection>
-                    <TitleArticle>
-                        <Link to="/">
-                            <h1>이윤영/ YUNYOUNG LEE</h1>
-                        </Link>
-                    </TitleArticle>
+                <SideSection>
+                    <NavArticle>
+                        <TitleArticle>
+                            <Link to="/">
+                                <h1>이윤영/ YUNYOUNG LEE</h1>
+                            </Link>
+                        </TitleArticle>
 
-                    <JopArticle>
-                        <p><span>프론트엔드 개발자</span></p>
-                        <p>Front-end Developer</p>
-                    </JopArticle>
+                        <JopArticle>
+                            <p><span>프론트엔드 개발자</span></p>
+                            <p>Front-end Developer</p>
+                        </JopArticle>
 
-                    <MenuArticle>
-                        <button onClick={ showSkill }>기술 스택 / skill stack</button>
-                        <button onClick={ showInfo }>소개 / info</button>
-                        {/* <Link to="/skillStack"><button>기술 스택 / skill stack</button></Link>
-                        <Link to="/about"><button>소개 / info</button></Link> */}
-                    </MenuArticle>
+                        <MenuArticle>
+                            <button onClick={ showSkill }>기술 스택 / skill stack</button>
+                            <button onClick={ showInfo }>소개 / info</button>
+                            {/* <Link to="/skillStack"><button>기술 스택 / skill stack</button></Link>
+                            <Link to="/about"><button>소개 / info</button></Link> */}
+                        </MenuArticle>
 
-                    <ProjectMenuArticle>
-                        <h3>프로젝트 / project</h3>
-                        <ProjectList>
-                            <ul>
-                                {
-                                    projectMenu?.map((project, index) => {
-                                        const dataId = project.name;
-                                        const dataNo = index + 1;
+                        <ProjectMenuArticle>
+                            <h3>프로젝트 / project</h3>
+                            <ProjectList>
+                                <ul>
+                                    {
+                                        projectMenu?.map((project, index) => {
+                                            const dataId = project.name;
+                                            const dataNo = index + 1;
 
-                                        return(
-                                            <li key={ dataId } onClick={ () => showProject(project) }>
-                                                <p>{ dataNo }. { project.name }</p>
-                                            </li>
-                                        )
-                                    })
-                                }
-                            </ul>
-                        </ProjectList>
-                    </ProjectMenuArticle>
+                                            return(
+                                                <li key={ dataId } onClick={ () => showProject(project) }>
+                                                    <p>{ dataNo }. { project.name }</p>
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </ul>
+                            </ProjectList>
+                        </ProjectMenuArticle>
+                    </NavArticle>
 
-                </NavSection>
+                    <AccountArticle>
+                        <div>
+                            <a href="https://github.com/reverofyoung" target="_blank">깃허브</a>
+                            <span><IoCodeOutline /></span>
+                        </div>
+                        <div>
+                            <a href="https://velog.io/@reverofyoung" target="_blank">벨로그</a>
+                            <span><IoArrowForwardSharp /></span>
+                        </div>
+                        <div>
+                            <a href="mailto:reverofyoung@gmail.com">이메일</a>
+                            <span><MdAlternateEmail /></span>
+                        </div>
+                    </AccountArticle>
+                </SideSection>
                 
-                <ContentSection>
-                    {
-                        infoState  === true ?  <InfoScreen /> 
-                        : skillState === true ? <SkillStackScreen /> 
-                        : projectData &&  
-                        <>
-                            <ProjectScreen project={ projectData } onClose={ () => setProjectData(null) } />
-                            <LinkButton onClick={ ()=>{ window.open(projectData.src) } }>바로 가기</LinkButton>  
-                        </>
-                    }
-                </ContentSection>
-                {/* 소개 컴포넌트 */}
-                {/* {
-                    infoState &&
-                    <ContentSection>
-                        <InfoScreen />
-                    </ContentSection>
-                } */}
-
-                {/* 기술 스택 컴포넌트 */}
-                {/* {
-                    skillState &&
-                    <ContentSection>
-                        <SkillStackScreen />
-                    </ContentSection>
-                } */}
-
-
-                {/* 프로젝트 컴포넌트 */}
                 {
-                    // projectData &&
-                    // <ContentSection className={ `${ projectState ? "content-show" : "" }` }>
-                    //     <ProjectScreen project={ projectData } onClose={ () => setProjectData(null) } />
+                    infoState  === true ?  
+                    <ContentSection>
+                        <InfoScreen onClose={ () => setInfoState(false) } /> 
+                    </ContentSection>
+                    
+                    : skillState === true ? 
+                    <ContentSection>
+                        <SkillStackScreen onClose={ () => setSkillState(false) } />
+                    </ContentSection> 
 
-                    //     <LinkButton onClick={ ()=>{ window.open(projectData.src) } } >
-                    //         바로 가기
-                    //     </LinkButton>  
-                    // </ContentSection> 
+                    : projectState &&  
+                    <ContentSection>
+                        <ProjectScreen project={ projectData } onClose={ () => setProjectState(false) } />
+                        <LinkButton onClick={ ()=>{ window.open(projectData.src) } }>바로 가기</LinkButton>  
+                    </ContentSection> 
                 }
             </MainSection>
 

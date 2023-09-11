@@ -1,11 +1,13 @@
 import { keyframes, styled } from "styled-components";
+
 import colors from "../common/colors";
+
 import { PiXLight } from 'react-icons/pi'; 
 
 const scaleAnimation = keyframes`
-  0% { transform: scale(1) } 
-  5% { transform: scale(1.2) } 
-  100% { transform: scale(1) }
+    0% { transform: scale(1) } 
+    5% { transform: scale(1.2) } 
+    100% { transform: scale(1) }
 `;
 
 const ModalWrap = styled.main`
@@ -15,18 +17,18 @@ const ModalWrap = styled.main`
 `;
 
 const ModalSection = styled.section`
-    /* font-family: 'Noto Sans KR', 'Noto Sans'; */
     font-family: 'Pretendard-Regular';
     height: 100%;
     width: 100%;
 
     @media screen and (max-width: 768px) { 
+        overflow-y: scroll;
         padding: 20px; 
         width: 100%; 
     };
 `;
 
-const ModalButtonSection = styled.section`
+const CloseButtonSection = styled.section`
     display: none;
     position: relative;
     margin-bottom: 20px;
@@ -45,9 +47,16 @@ const CloseButton = styled.button`
     &:hover { color: ${ colors.pointColor }; }
 `;  
 
-const ModalContentsSection = styled.section`
-    /* overflow-y: scroll; */
+const ContentsSection = styled.section`
     padding-right: 30px;
+
+    article:nth-child(4) {
+        margin: 40px 0px;
+    };
+
+    article:nth-child(5) {
+        flex-direction: column;
+    }
 
     @media screen and (max-width: 768px) {  
         overflow-y: scroll;
@@ -78,7 +87,7 @@ const ProjectArticle = styled.article`
         font-size: 15px;
         font-weight: bold;
         margin-bottom: 20px;
-    }
+    };
 
     p {
         font-family: 'Pretendard-Regular';
@@ -132,7 +141,16 @@ const SkillBox = styled.div`
     };
 `;
 
-const FunctionArticle = styled.div`
+const DisplaySection = styled.section`
+    display: flex;
+    justify-content: space-between;
+
+    @media screen and (max-width: 768px) { 
+        flex-direction: column;
+    };
+`;
+
+const FunctionArticle = styled.article`
     width: 50%;
 
     ul {
@@ -142,36 +160,23 @@ const FunctionArticle = styled.div`
             margin-bottom: 10px;
         }
     }
+
+    @media screen and (max-width: 768px) { 
+        width: 100%;
+    };
    
 `;
 
-const ProjectImageSection = styled.section`
+const ProjectImageArticle = styled.article`
     width: 40%;
 
     img { width: 100%; }
+
+    @media screen and (max-width: 768px) { 
+        margin-top: 40px;
+        width: 100%;
+    };
 `;
-
-const LinkButton = styled.button`
-        background-color: ${ colors.pointColor };
-        border-radius: 60px;
-        bottom: 0px;
-        color: ${ colors.mainColor };
-        cursor: pointer;
-        font-weight: bold;
-        height: 60px;
-        text-decoration: underline;
-        position: absolute;
-        right: 60px;
-        width: 60px;
-        z-index: 15;
-        
-        &:hover { animation: ${ scaleAnimation } .9s ease-in infinite };
-
-        @media screen and (max-width: 768px) { 
-            font-size: 11px;
-            right: 40px;
-        };
-`
 
 function ProjectScreen({ onClose, project }) {
     const functionList = project.function;
@@ -180,13 +185,13 @@ function ProjectScreen({ onClose, project }) {
     return(
         <ModalWrap>
             <ModalSection>
-                {/* ---------- 모달 버튼 영역 ---------- */}
-                <ModalButtonSection>
+                {/* ---------- 닫기버튼 영역 ---------- */}
+                <CloseButtonSection>
                     <CloseButton onClick={ onClose }><PiXLight size={ 22 } /></CloseButton>
-                </ModalButtonSection>
+                </CloseButtonSection>
 
                 {/* ---------- 모달 컨텐츠 영역 ---------- */}
-                <ModalContentsSection>
+                <ContentsSection>
                     <ProjectArticle>
                         <h1>{ project.name }</h1>
                         <h2>{ project.subTitle }</h2>
@@ -209,14 +214,14 @@ function ProjectScreen({ onClose, project }) {
                         </SkillBox>
                     </ProjectArticle>
 
-                    <ProjectArticle style={{ margin: '100px 0px' }}>
+                    <ProjectArticle>
                         <h3>기획 의도</h3>
                         <p style={{ textAlign: "left" }}>{ project.describtion }</p>
                     </ProjectArticle>
 
                     <ProjectArticle>
                         <h3>기능 소개</h3>
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <DisplaySection>
                             <FunctionArticle>
                                     <ul>
                                     {
@@ -229,16 +234,13 @@ function ProjectScreen({ onClose, project }) {
                                 </ul>
                             </FunctionArticle>
 
-                            <ProjectImageSection>
+                            <ProjectImageArticle>
                                 { project.image === undefined ? <p>이미지 준비중😢</p> :  <img src={ project.image } alt={ project.alt } ></img> }
-                            </ProjectImageSection>
-                        </div>
+                            </ProjectImageArticle>
+                        </DisplaySection>
                     </ProjectArticle>
-                </ModalContentsSection>
+                </ContentsSection>
             </ModalSection>
-            {/* <LinkButton onClick={ ()=>{ window.open(project.src) } }>
-                바로 가기
-            </LinkButton>   */}
         </ModalWrap>
     )
 };
