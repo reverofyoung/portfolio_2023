@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import colors from "../common/colors";
-// import ProjectModal from "../component/ProjectModal";
 // import ProjectModalTest from "../component/ProjectComp";
+// import ProjectModal from "../component/ProjectModal";
 import ProjectComp from "../component/ProjectComp";
 import FooterComp from "../component/FooterComp";
 
@@ -49,7 +49,6 @@ const MainWrap = styled.main`
         /* background-color: ${ colors.pointColor }; */
         color: black;
     }
-    
 `;
 
 const MainSection = styled.section`
@@ -287,9 +286,6 @@ function HomePage() {
             describtion: `
                 스위스의 업사이클링 브랜드인 프라이탁의 브랜드 스토리텔링을 목적으로 기획한 웹 사이트다. 
                 CSS를 활용한 기본적인 애니메이션과 애니메이션 라이브러리인 GSAP를 사용하여 컨텐츠를 강조하는 것에 힘썼다. 
-                menu 항목들에는 호버 애니메이션을 적용했고, story, process에서는 다양한 레이아웃과 스크롤 높이에 따라
-                컨텐츠의 opacity 값을 변경하여 컨텐츠가 나타나는 것처럼 보이도록 했다. product에서는 마우스 클릭 이벤트를 활용하여
-                각 제품 클릭 시 제품의 내용을 볼 수 있는 모달의 class 값을 변경하여 모달 보이기, 숨기기를 구현했다. 
             `,
             function: [
                 'menu : 각 항목의 호버 애니메이션',
@@ -344,11 +340,8 @@ function HomePage() {
                     </JopArticle>
 
                     <MenuArticle>
-              
-                            <Link to="/skillStack"><button>기술 스택 / skill stack</button></Link>
-                        
-                            <Link to="/about"><button>소개 / info</button></Link>
-                  
+                        <Link to="/skillStack"><button>기술 스택 / skill stack</button></Link>
+                        <Link to="/about"><button>소개 / info</button></Link>
                     </MenuArticle>
 
                     <ProjectMenuArticle>
@@ -375,7 +368,7 @@ function HomePage() {
 
                 {
                     projectData &&
-                    <ContentSection className={`${ contentState ? "content-show" : "content-hide" }`}>
+                    <ContentSection className={ `${ contentState ? "content-show" : "content-hide" }` }>
                         <ProjectComp project={ projectData }/>
 
                         <LinkButton onClick={ ()=>{ window.open(projectData.src) } }>
@@ -390,9 +383,6 @@ function HomePage() {
             <MoveImage>
                 <img src={ MainImg } style={{ position: "absolute", left: xy.x, top: xy.y }}/>
             </MoveImage>
-
-            {/* ---------- 프로젝트 모달 ---------- */}
-            {/* { selectedProject && ( <ProjectModal onClose={ () => setSelectedProject(null) } project={ selectedProject } /> ) } */}
 
             {/* ---------- 푸터 ---------- */}
             <FooterComp />
