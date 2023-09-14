@@ -217,6 +217,7 @@ const ProjectList = styled.ul`
 
 const ContentSection = styled.section`
     height: 100%;
+    /* opacity: ${ (props) => props.visibleee ? 1 : 0 }; */
     width: 75%;
     z-index: 10;
 
@@ -485,7 +486,7 @@ function HomePage() {
                 
                 {
                     infoState  === true ?  
-                    <ContentSection>
+                    <ContentSection >
                         <InfoScreen onClose={ () => setInfoState(false) } /> 
                     </ContentSection>
                     
