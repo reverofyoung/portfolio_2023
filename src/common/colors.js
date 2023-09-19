@@ -1,5 +1,5 @@
 const colors = {
-    mainColor: "#FFF",
+    mainColor: "#fff",
     // mainColor: "#F6F4EB",
     fontColor: "#000",
     pointColor: "#CF0000",
