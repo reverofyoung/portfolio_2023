@@ -2,7 +2,6 @@ import styled, { keyframes } from "styled-components"
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoCodeOutline } from "react-icons/io5";
-import { IoCodeSlash } from "react-icons/io5";
 import { IoArrowForwardSharp } from "react-icons/io5";
 import { MdAlternateEmail } from "react-icons/md";
 
@@ -104,7 +103,8 @@ const NavArticle = styled.article`
 
 const TitleArticle = styled.article`
     &:hover {   
-        animation: ${ titleSpinAni } 1.2s linear infinite;
+        /* animation: ${ titleSpinAni } 1.2s linear infinite; */
+        color: lightgray;
     } 
     
     h1 {
@@ -160,6 +160,9 @@ const AccountArticle = styled.article`
             line-height: 1.5;
             font-size: 13px;
             font-weight: lighter;
+            @media screen and (max-width: 768px) {
+                font-size: 16px;  
+            };
         }
 
         span {
@@ -217,7 +220,6 @@ const ProjectList = styled.ul`
 
 const ContentSection = styled.section`
     height: 100%;
-    /* opacity: ${ (props) => props.visibleee ? 1 : 0 }; */
     width: 75%;
     z-index: 10;
 
@@ -301,10 +303,17 @@ function HomePage() {
                 'HTML', 'CSS', 'React Native', 'Redux Toolkit', 'Expo'
             ],
             describtion: ` 
-                평소 독서 관련 앱을 사용하면서 독후감 뿐만 아니라 읽기 전(독전감), 읽는 중(독중감)에도 작성할 수 있는 
-                독서 일기 형태면 좋겠다는 생각을 시작으로 기획하게 되었다.
+                React Native 공부를 위해 토이 프로젝트 주제를 고민하던 중,
+                평소 독서 관련 앱을 사용하면서 느낀 아쉬운 점을 보완하고자 기획하게 되었다.
+                
+                책을 읽은 후 작성하는 독후감 뿐만 아니라 읽기 전(독전감), 읽는 중(독중감)에도 작성할 수 있는 독서 일기 형태면
+                좋겠다고 생각하였고, 개인적으로 최근에 각종 어플케이션에서 상용화 되고 있는 소셜미디어 피드 형식이 부담스럽다고
+                느껴져서 사용자가 독립적으로 사용할 수 있는 어플리케이션을 목표로 하였다.
+                
+                독서 일기 관리가 주기능인만큼 독서 일기를 작성하는 과정을 가장 오래 고민하였다.
                 단계별로 '독전감'을 반드시 작성해야만 '독중감', 그 후에 '독후감'으로 넘어갈 수 있도록 하여
-                약간의 강제성을 부여하면서 사용자가 독서에 대한 책임감을 느낄 수 있도록 하는 것이 목표이다.
+                어느정도 강제성을 부여하면서 사용자가 독서에 대한 책임감을 느꼈으면 좋겠다고 생각하였고,
+                새로운 책을 읽기 전과 읽는 중, 완독한 후의 다양한 독서 경험을 기록할 수 있도록 하였다.
             ` ,
             function: [
                 '카카오 API를 활용한 책 검색 기능',
@@ -329,8 +338,14 @@ function HomePage() {
                 'React'
             ],
             describtion: ` 
-                최근 '카공족'이라는 신조어가 급격히 떠오르고 있다. 당장 주위만 둘러봐도 카페에서 공부나 작업하는 모습을 쉽게 볼 수 있다.
-                나 역시도 주로 카페에 가서 작업을 하기 때문에 이러한 상황을 반영하여 프리랜서들을 위한 웹 대시보드를 기획하게 되었다.` 
+            최근 '카공족'이라는 신조어가 급격히 떠오르고 있다. 당장 주위만 둘러봐도 카페에서 공부나 작업하는 모습을 쉽게 볼 수 있다.
+            나 역시도 주로 카페에 가서 작업을 하기 때문에 이러한 상황을 반영하여 프리랜서들을 위한 웹 대시보드를 기획하게 되었다.
+            웹에서 실행되는 대시보드이기 때문에 장기적이고 복잡한 계획보다는 오늘 해야할 일을 단순하게 보여줬으면 좋겠다고 생각하여 아주 직관적인 UI로
+            투두 리스트를 만들었고, 기왕이면 개인 비서, 마치 아이언맨의 '자비스' 같은 역할을 해주면 재미있을 것 같다고 생각해서
+            화면 상단에서 '우울한 oo', '일이 많은 oo' 등 자유롭게 사용자의 이름 또는 닉네임을 등록할 수 있게 하여 보다 현재 사용하고 있는
+            '나', 내가 돋보일 수 있게 했다. OpenWeather API를 활용하여 위치 기반의 날씨를 보여주는데, 앞서 말했듯이 조금 더 친밀한 느낌을 주기
+            위해 날씨마다 조건식을 추가하여 '비가 내리고 있으니 우산을 챙기세요' 와 같은 보조 설명을 덧붙였다.
+            ` 
             ,
             function: [
                 '반응형 레이아웃 적용',
@@ -357,16 +372,17 @@ function HomePage() {
                 'React'
             ],
             describtion: ` 
-                그동안의 작업물들을 모아둔 포트폴리오 웹 사이트이다. 리액트의 컴포넌트를 다양하게 사용해보는 것을 목표로 제작하였다. 
-                홈에서는 각 화면으로 이동 가능한 메뉴 버튼을 볼 수 있다. 프로젝트는 작업물을 볼 수 있는 메뉴이며, 기술 스택은 현재 사용 가능한, 사용해본 경험이 있는 기술을 작성해뒀다.
-                더보기에서는 이메일, 개발 블로그 등의 계정과 함께 간단한 자기소개를 볼 수 있다.
+                그동안의 작업물들을 모아둔 포트폴리오 웹 사이트이다. 번거로움 없이 작업물을 관람할 수 있게 하는 것을 목표로 하였기 떄문에
+                홈화면에서 프로젝트 목록을 바로 볼 수 있고, 각 화면으로 이동 가능한 메뉴 버튼들과 깃허브, 벨로그, 이메일로 연결되는 링크를 배치했다.
+                '기술 스택 / skill stack'에서는 사용 가능한 기술들과 활용도를 볼 수 있고, '소개 / info'에서는 간단한 자기소개를 볼 수 있다.
+                재미있는 포트폴리오가 되었으면 좋겠단 생각에 곳곳에 다양한 애니메이션을 주었다. 애니메이션을 발견하는 재미가 있었으면 한다.
             `, 
             function: [
                 '반응형 레이아웃 적용',
-                '모든 화면에서 사용되는 홈버튼, 푸터 컴포넌트 분리', 
-                '배열을 활용한 프로젝트 데이터 정리',
-                '클릭된 프로젝트 항목의 id와 같은 id를 가진 데이터 props로 모달에 전달',
-                '반복문을 사용하여 props로 전달 받은 데이터 렌더링',
+                'keyframes 활용한 애니메이션',
+                'styled-components를 활용한 스타일링',
+                '클릭된 프로젝트 항목의 데이터를 props로 ProjectScreen에 전달',
+                '반복문 map 및 조건문 사용하여 props로 전달 받은 데이터 렌더링',
             ],
             src: 'https://reverofyoung.github.io/portfolio_2023/',
             image: portfolio,
@@ -384,13 +400,17 @@ function HomePage() {
                 'jQuery'
             ],
             describtion: `
-                스위스의 업사이클링 브랜드인 프라이탁의 브랜드 스토리텔링을 목적으로 기획한 웹 사이트다. 
-                CSS를 활용한 기본적인 애니메이션과 애니메이션 라이브러리인 GSAP를 사용하여 컨텐츠를 강조하는 것에 힘썼다. 
+                평소 좋아하는 브랜드인 프라이탁의 브랜드 스토리텔링 웹 사이트를 개발했다.
+                프라이탁은 스위스의 업사이클링 브랜드로 버려진 트럭의 타프를 재활용 하여 가방을 만드는 것이 특징이다.
+                국내에도 엄청난 매니아층을 보유하고 있는데 브랜드를 시작하게 된 계기가 재밌어서 제품을 구매하는 것뿐만 아니라
+                브랜드의 이야기도 많은 사람들이 알았으면 하는 생각에 기획하게 되었다.  
             `,
             function: [
-                'menu : 각 항목의 호버 애니메이션',
-                'story, process : 다양한 레이아웃과 스크롤 높이에 따라 컨텐츠가 나타나는 애니메이션',
-                'product : 마우스 클릭 이벤트 활용, 각 제품 클릭시 제품 상세 페이지 모달의 class 값을 변경하여 모달 보이기, 숨기기 구현',
+                '가독성을 고려한 다양한 레이아웃',
+                'a 링크 마우스 오버 애니메이션',
+                'GSAP 라이브러리를 활용한 스크롤 이벤트',
+                '각 제품 클릭 시 모달의 class 값을 변경하여 모달 보이기, 숨기기 구현',
+                '외부 스타일 시트 사용'
             ],
             src: 'https://reverofyoung.github.io/freitag-project/',
             image: freitag,
@@ -408,7 +428,7 @@ function HomePage() {
                 'jQuery'
             ],
             describtion: `
-                페스티벌에 필요한 굿즈를 키트로 제공하는 브랜드를 기획하였다.
+                졸업작품으로 페스티벌에 필요한 굿즈를 키트로 제공하는 브랜드를 기획하였다.
                 각 페스티벌에 맞는 키트 구성품을 커스터마이징 할 수 있다는 것이 특징이고, 
                 브랜드의 특징인 커스터마이징을 가장 잘 보여줄 수 있는 것이 직접 커스터마이징 과정을 경험할 수 있는 쇼핑몰 형태의 웹이라 생각하여 웹 쇼핑몰을 개발하게 되었다.
             `,
@@ -497,7 +517,7 @@ function HomePage() {
 
                     : projectState &&  
                     <ContentSection>
-                        <ProjectScreen project={ projectData } onClose={ () => setProjectState(false) } />
+                        <ProjectScreen id="projectScreen" project={ projectData } onClose={ () => setProjectState(false) } />
                         <LinkButton onClick={ ()=>{ window.open(projectData.src) } }>바로 가기</LinkButton>  
                     </ContentSection> 
                 }
