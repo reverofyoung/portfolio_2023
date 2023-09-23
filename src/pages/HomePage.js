@@ -17,7 +17,7 @@ import MainImg from "../image/MainImg.png";
 import portfolio from "../image/portfolio.png"
 import dashboard from "../image/dashboard.png"
 import freitag from "../image/freitag.png"
-import chamkit from "../image/chamkit.png"
+// import chamkit from "../image/chamkit.png"
 
 const fadeAnimation = keyframes`
   0% { opacity: 1; }
@@ -416,32 +416,32 @@ function HomePage() {
             image: freitag,
             alt: '프라이탁 웹사이트 메인 이미지',
         },
-        {
-            name: 'CHAMKIT',
-            subTitle: '커스터마이징 가능한 페스티벌 굿즈 키트 브랜딩 및 웹 쇼핑몰',
-            date: '2018 졸업작품',
-            part: '팀 프로젝트(5인) | 기획 90%, 개발 100% 참여',
-            skill: [
-                'HTML', 
-                'CSS', 
-                'JavaScript', 
-                'jQuery'
-            ],
-            describtion: `
-                졸업작품으로 페스티벌에 필요한 굿즈를 키트로 제공하는 브랜드를 기획하였다.
-                각 페스티벌에 맞는 키트 구성품을 커스터마이징 할 수 있다는 것이 특징이고, 
-                브랜드의 특징인 커스터마이징을 가장 잘 보여줄 수 있는 것이 직접 커스터마이징 과정을 경험할 수 있는 쇼핑몰 형태의 웹이라 생각하여 웹 쇼핑몰을 개발하게 되었다.
-            `,
-            function: [
-                '브랜드의 아이덴티티를 엿볼 수 있는 home', 
-                '팀 소개를 볼 수 있는 about', 
-                '쇼핑몰 레이아웃을 적용한 shop',
-                '키트 구성품을 직접 커스텀 할 수 있는 custom',
-            ],
-            src: 'https://reverofyoung.github.io/chamkit-project/',
-            image: chamkit,
-            alt: '참킷 웹사이트 메인 이미지'
-        }
+        // {
+        //     name: 'CHAMKIT',
+        //     subTitle: '커스터마이징 가능한 페스티벌 굿즈 키트 브랜딩 및 웹 쇼핑몰',
+        //     date: '2018 졸업작품',
+        //     part: '팀 프로젝트(5인) | 기획 90%, 개발 100% 참여',
+        //     skill: [
+        //         'HTML', 
+        //         'CSS', 
+        //         'JavaScript', 
+        //         'jQuery'
+        //     ],
+        //     describtion: `
+        //         졸업작품으로 페스티벌에 필요한 굿즈를 키트로 제공하는 브랜드를 기획하였다.
+        //         각 페스티벌에 맞는 키트 구성품을 커스터마이징 할 수 있다는 것이 특징이고, 
+        //         브랜드의 특징인 커스터마이징을 가장 잘 보여줄 수 있는 것이 직접 커스터마이징 과정을 경험할 수 있는 쇼핑몰 형태의 웹이라 생각하여 웹 쇼핑몰을 개발하게 되었다.
+        //     `,
+        //     function: [
+        //         '브랜드의 아이덴티티를 엿볼 수 있는 home', 
+        //         '팀 소개를 볼 수 있는 about', 
+        //         '쇼핑몰 레이아웃을 적용한 shop',
+        //         '키트 구성품을 직접 커스텀 할 수 있는 custom',
+        //     ],
+        //     src: 'https://reverofyoung.github.io/chamkit-project/',
+        //     image: chamkit,
+        //     alt: '참킷 웹사이트 메인 이미지'
+        // }
     ];
 
     return(
